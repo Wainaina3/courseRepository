@@ -1,0 +1,177 @@
+html, body {
+  overflow-x: hidden;
+}
+#logback{
+	background-image: url("../images/log2.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+#row1{
+  background-color: white;
+  opacity: 0.91;
+  padding: 2%;
+/*margin-right: 25%;
+margin-left: 25%;*/
+margin-top: 5%;
+
+}
+#row2{
+  background-color: white;
+  opacity: 0.91;
+  /*padding: 2%;*/
+/*margin-right: 25%;
+margin-left: 25%;*/
+/*margin-top: 5%;*/
+/*visibility: hidden;*/
+
+}
+.brand-logo{
+  height: 100%;
+}
+
+
+.container .row{
+  margin: 0px;
+}
+.slider .slides li img {
+  height: 100%;
+  width: 100%;
+  background-size:100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.nav-wrapper{
+  background-color: white;
+}
+
+.material-icons.orange600 { color: #bbdefb; }
+
+#indexcon{
+  width: 90%;
+}
+
+#signupcon{
+  width:75%;
+}
+.navbar-fixed nav {
+  position: fixed;
+  left: 5%;
+  right: 5%;
+  width: auto;
+}
+.user{
+  margin:0;
+}
+
+#userform{
+ /*padding: 2%;*/
+ /*display: none;*/
+ background-color: white;
+}
+
+#rep{
+  margin: auto;
+}
+@media only screen and (max-width : 600px) {
+/*.container {
+  padding:0;
+  margin:0;
+  left: 0%;
+  right: 0%;
+}
+
+body {
+  padding:0;
+}*/
+
+
+.slide-text{
+  font-size: 120%;
+}
+.slogan{
+  font-size: 95%;
+}
+.logbt{
+  width: 100%;
+}
+#signupcon{
+  width:100%;
+}
+#logback{
+  background-image: url("../images/log2.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 600px 100%;
+}
+#logo{
+  width: 25%;
+  height: 25%;
+}
+.navbar-fixed nav {
+  position: fixed;
+  left: 0%;
+  right: 0%;
+  width: auto;
+}
+#userform{
+ /*padding: 2%;*/
+ /*display: none;*/
+ background-color: white;
+ width: auto;
+}
+#indexcon{
+  width: 100%;
+}
+
+}
+
+
+#desform{
+ padding-top: 5%;
+}
+.image{
+  width:150px;
+  height:150px
+}
+
+#signupheader{
+ background-image:url('../images/b1.jpg');
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+ 
+.profile {
+  position: fixed;
+  top: 20%;
+  left: 25%;
+  right: 25%;
+  z-index: -1;
+
+  display: block;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  width: 1200px;
+  height: 1800px;
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /*z-index: 9998;*/
+  /*margin-left: 20px;
+  margin-right: 20px;*/
+}
+
+.card .card-image img{
+  left: -12px;
+  width: 110%;
+}
