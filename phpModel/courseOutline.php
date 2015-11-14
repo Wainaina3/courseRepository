@@ -7,6 +7,10 @@
  * Time: 19:48
  */
 include_once("adb.php");
+/*
+ * The class uses adb class to query the database
+ * It sends the queries which are run appropriately
+ */
 class courseOutline extends adb
 {
 
