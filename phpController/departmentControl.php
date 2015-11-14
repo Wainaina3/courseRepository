@@ -8,7 +8,7 @@
  */
 include_once(dirname(__FILE__)."\..\phpModel\department.php");
 
-class departmentControl
+class departmentControl extends department
 {
 
 }

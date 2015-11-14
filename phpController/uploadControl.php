@@ -11,7 +11,7 @@
  */
 include_once(dirname(__FILE__)."\..\phpModel\uploadFile.php");
 
-class uploadControl
+class uploadControl extends uploadFile
 {
 
 }

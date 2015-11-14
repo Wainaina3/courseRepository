@@ -23,12 +23,23 @@ define("LOG_LEVEL_SEC",0);
 define("LOG_LEVEL_DB_FAIL",0);
 
 define("PAGE_SIZE",10);
-
+/*
+ * This function should log errors to a file.
+ * @param int $level Level of error to be logged
+ * @param int $code the code to identify type of error
+ * @param string $msg the message to be logged
+ * @param string $mysql_msg the message from mysql
+ */
 function log_msg($level, $er_code, $msg, $mysql_msg){
     return 0;
 }
+/*
+ * This class will be used to connect to the database.
+ * The database connections are defined above.
+ */
 
-class adb {
+class adb
+{
 
     /**error description*/
     var $str_error;
@@ -40,8 +51,14 @@ class adb {
     var $er_code_prefix;
     /* query result resource*/
     var $result;
-
-    function adb() {
+/*
+ * Constructor to initialize the class
+ * The er_code prefix is initialized to 100
+ * The link is initialized to false
+ * The result is initialized false
+ */
+    function adb()
+    {
 
         $this->er_code_prefix=1000;
         $this->link=false;
@@ -50,8 +67,14 @@ class adb {
 
     /**
      * logs error into database using functions defined in log.php
+     * @param int $level Level of error to be logged
+     * @param int $code the code to indetify type of error
+     * @param string $msg the message to be logged
+     * @param string $mysql_msg the message from mysql
+     * @return int $log_id the id of the error after being logged
      */
-    function log_error($level, $code, $msg, $mysql_msg = "NONE") {
+    function log_error($level, $code, $msg, $mysql_msg )
+    {
         $er_code = $this->er_code_prefix + $code;
         //call to a predefined function
         $log_id = log_msg($level, $er_code, $msg, $mysql_msg);
@@ -67,27 +90,32 @@ class adb {
 
     /**
      * creates connection to database
+     * @return boolean It returns tru when there was a successful connection and false when it fails to connect
      */
-    function connect() {
+    function connect()
+    {
 
         if($this->link)
         {
             return true;
         }
         //try to connect to db
-        $this->link = mysql_connect(DB_HOST , DB_USER, DB_PWORD);
+        //@param string $DB_HOST the database server host
+        //@param string $DB_USER the user name of database server
+        //@param string $DB_PWORD the password of the database server
+        $this->link = mysqli_connect(DB_HOST , DB_USER, DB_PWORD);
 
         if (!$this->link) {
             //if connection fail log error and set $str_error
-            //echo "not connected";	//debug line
-            $this->log_error(LOG_LEVEL_DB_FAIL,1, "connection failed  in db:connect()", mysql_error());
+
+            $this->log_error(LOG_LEVEL_DB_FAIL,1, "connection failed  in db:connect()", mysqli_error());
 
             return false;
         }
-        //echo "connected";
-        if (!mysql_select_db(DB_NAME)) {
-
-            $log_id = $this->log_error(LOG_LEVEL_DB_FAIL,2, "select db failed   in db:connect()", mysql_error($this->link));
+        //Tries to select a database
+        if (!mysqli_select_db(DB_NAME)) {
+            //if it cannot connect, an error is logged
+            $log_id = $this->log_error(LOG_LEVEL_DB_FAIL,2, "select db failed   in db:connect()", mysqli_error($this->link));
             return false;
         }
 
@@ -96,24 +124,31 @@ class adb {
 
 
     /**
-     *returns a row from a data set
+     *This function gets data from the query results.
+     * @return string It returns an associative array of one row of the result.
      */
-    function fetch() {
-        return mysql_fetch_assoc($this->result);
+    function fetch()
+    {
+        return mysqli_fetch_assoc($this->result);
     }
 
     /**
-     * connect to db and run a query
+     * This function connects to the database by calling the $connect function
+     * It then runs query on the database
+     * The result is stored in $result variable
+     * @param string $str_sql This is the sql query to be run on the database
+     * @return boolean Returns true when the query succeeds (no error) or false when it fails.
      */
-    function query($str_sql) {
-
+    function query($str_sql)
+    {
+        //tries to connect
         if (!$this->connect()) {
             return false;
         }
-
-        $this->result = mysql_query($str_sql,$this->link);
+        //sets result by running mysqli_query on the given string
+        $this->result = mysqli_query($str_sql,$this->link);
         if (!$this->result) {
-            $this->log_error(LOG_LEVEL_DB_FAIL, 4, "query failed", mysql_error($this->link));
+            $this->log_error(LOG_LEVEL_DB_FAIL, 4, "query failed", mysqli_error($this->link));
             return false;
         }
 
@@ -121,21 +156,27 @@ class adb {
     }
 
     /**
-     * returns number of rows in current dataset
+     * This function returns the number of rows in the dataset from the database
+     * @return integer It returns the number of rows.
      */
-    function get_num_rows() {
+    function get_num_rows()
+    {
         return mysql_num_rows($this->result);
     }
     /**
-     *returns last auto generated id
+     *gets the last auto-generated id
+     * @return integer the last insertion id.
      */
-    function get_insert_id() {
-        return mysql_insert_id($this->link);
+    function get_insert_id()
+    {
+        return mysqli_insert_id($this->link);
     }
     /**
-     *closing the link
+     *This function closes the connection of the database
+     * @return void
      */
-    function close(){
-        mysql_close($this->link);
+    function close()
+    {
+        mysqli_close($this->link);
     }
 }

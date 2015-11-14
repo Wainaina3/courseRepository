@@ -8,7 +8,7 @@
  */
 include_once(dirname(__FILE__)."\..\phpModel\courseOutline.php");
 
-class courseOutlineControl
+class courseOutlineControl extends courseOutline
 {
 
 }

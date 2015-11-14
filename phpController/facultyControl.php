@@ -9,7 +9,7 @@
 
 include_once(dirname(__FILE__)."\..\phpModel\faculty.php");
 
-class facultyControl
+class facultyControl extends faculty
 {
 
 }

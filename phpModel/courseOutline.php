@@ -7,7 +7,7 @@
  * Time: 19:48
  */
 include_once("adb.php");
-class courseOutline
+class courseOutline extends adb
 {
 
 }

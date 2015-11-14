@@ -7,7 +7,7 @@
  * Time: 19:49
  */
 include_once("adb.php");
-class uploadFile
+class uploadFile extends adb
 {
 
 }
