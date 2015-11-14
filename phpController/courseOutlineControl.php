@@ -18,17 +18,19 @@ class courseOutlineControl extends courseOutline
  * This functions get a course to be deleted from the user request
  * It first checks whether the course id was set and only proceeds if it was set
  * It then sends it to courseOutline to delete it
- * @return boolean Returns true if it was able to delete the course outline
+ * @return json format message of success or failure. The failure result value is 0 while success result is 1
  */
     function deleteCourse()
     {
         if (!isset($_REQUEST['courseId'])) {
-           return false;
+           echo '{"result":0}';
         }
 
         $courseId=$_REQUEST['courseId'];
 
-        return $this->deleteCourseOutline($courseId);
+        if  ($this->deleteCourseOutline($courseId)) {
+            echo '{"result":1,"message":"Course $courseId was deleted from database"}';
+        }
     }
 }
 /*

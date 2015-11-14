@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `courseoutline`
 --
 
+create database courserepo;
+use courserepo;
+
 CREATE TABLE IF NOT EXISTS `courseoutline` (
   `courseId` varchar(200) NOT NULL,
   `courseTitle` varchar(255) NOT NULL,

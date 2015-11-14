@@ -311,6 +311,15 @@ function get_deptByName(){
 
 
 }
+/*
+*This function 
+ */
+	function deleteCourse(courseId)
+	{
+		var request="http://localhost:8000/server/courseRepository/phpController/courseOutlineControl.php?cmd=5&courseId="+courseId;
+		var result =sendRequest(request);
+
+	}
 
 
 

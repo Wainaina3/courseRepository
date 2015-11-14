@@ -113,7 +113,7 @@ class adb
             return false;
         }
         //Tries to select a database
-        if (!mysqli_select_db(DB_NAME)) {
+        if (!mysqli_select_db($this->link,DB_NAME)) {
             //if it cannot connect, an error is logged
             $log_id = $this->log_error(LOG_LEVEL_DB_FAIL,2, "select db failed   in db:connect()", mysqli_error($this->link));
             return false;
@@ -146,7 +146,7 @@ class adb
             return false;
         }
         //sets result by running mysqli_query on the given string
-        $this->result = mysqli_query($str_sql,$this->link);
+        $this->result = mysqli_query($this->link,$str_sql);
         if (!$this->result) {
             $this->log_error(LOG_LEVEL_DB_FAIL, 4, "query failed", mysqli_error($this->link));
             return false;

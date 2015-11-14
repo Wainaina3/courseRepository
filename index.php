@@ -12,10 +12,10 @@
   
   <script type="text/javascript">
   //   function check(){
-  //     var dob = "<?php echo $_SESSION['jwi_user_dob']; ?>";
-  //     var des = "<?php echo $_SESSION['jwi_user_description']; ?>";
-  //     var con = "<?php echo $_SESSION['jwi_user_contact']; ?>";
-  //     var cv = "<?php echo $_SESSION['jwi_user_cv']; ?>";
+  //     var dob = "<?php //echo $_SESSION['jwi_user_dob']; ?>";
+  //     var des = "<?php //echo $_SESSION['jwi_user_description']; ?>";
+  //     var con = "<?php //echo $_SESSION['jwi_user_contact']; ?>";
+  //     var cv = "<?php //echo $_SESSION['jwi_user_cv']; ?>";
   //     if(dob=="0000-00-00"||des=="null"||con=="null"||cv=="null"){
   //      Materialize.toast("Please try to complete your profile details.", 4000);  
   //    }
@@ -30,7 +30,7 @@
   //  }
 
   //  function php() {
-  //   var image = "<?php echo $_SESSION['jwi_user_propic']; ?>";
+  //   var image = "<?php //echo $_SESSION['jwi_user_propic']; ?>";
   //   if(image=="null"){
   //     image = "images/default-user.png";
   //   }
@@ -73,7 +73,7 @@
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
               <span class="blue-text" style="float:right; padding-left:25%; " >
-                <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+               <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
               </span>
             </div>
             <div class="col s1">&nbsp;</div>
@@ -121,7 +121,9 @@ COntent here
 
 
 Edit here
-
+<div id="deleteTest">
+    <button id="deleteButton" onclick="deleteCourse('12')">Delete</button>
+</div>
   
 </div>
 
@@ -161,7 +163,8 @@ Edit here
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
-<script type="text/javascript">
+ <script type="text/javascript" src="js/my_js.js"></script>
+ <script type="text/javascript">
   $( document ).ready(function(){
     $(".button-collapse").sideNav();
     var orginalWidth = $(window).height();
