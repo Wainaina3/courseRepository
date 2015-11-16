@@ -9,6 +9,10 @@
 		return result;	//return object
 
 	}
+	//activate select element in materialize
+	$(document).ready(function() {
+		$('select').material_select();
+	});
 
 	function courseOutlines(){
 
@@ -312,7 +316,9 @@ function get_deptByName(){
 
 }
 /*
-*This function 
+*This function sends a request to delete a course outline via ajax call
+* The requests returns a success or failure message in json format.
+* Json object contains result (int) and message (string) properties
  */
 	function deleteCourse(courseId)
 	{
@@ -320,6 +326,38 @@ function get_deptByName(){
 		var result =sendRequest(request);
 
 	}
+
+	/*
+	*This function sends an ajax request to upload a file to server
+	* The file information are also uploaded to the database
+	* The processing of this upload is done by the uploadControl.php file
+	*
+	 */
+	function uploadFile(){
+
+		var formElement = document.getElementById("fileUpload");
+		var fd = new FormData(formElement);
+
+		$.ajax({
+			url: "phpController/uploadControl.php?cmd=1",
+			type: "POST",
+			data: fd,
+			//dataType: 'json',
+			contentType: false,
+			processData:false,
+			success: function(data)
+			{
+
+				alert(data + " " + "Message from request");
+			},
+			error: function(data){
+
+
+			}
+		});
+	}
+
+
 
 
 
