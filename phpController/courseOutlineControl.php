@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: David
+ * User: David & Daniel
  * Date: 13/11/2015
  * Time: 19:47
  */
@@ -32,6 +32,110 @@ class courseOutlineControl extends courseOutline
             echo '{"result":1,"message":"Course $courseId was deleted from database"}';
         }
     }
+
+    /**This get the courseid of what the user wants to update
+    *With the courseId the course Outline with such data is displayed
+    *The user then does the modification
+    */
+    function showCourseToUpdate(){
+        if(!isset($_REQUEST['courseId'])){
+            echo '{"result":0,"message":"Nothing to do"}';
+            return;
+        }
+        $courseId=$_REQUEST['courseId'];
+        $result=$this->showOutline($courseId);
+        if(!$result){
+            return;
+        }
+        $row=$this->fetch();
+        echo '{"result":1,"Outline":[';
+        while($row){
+            echo json_encode($row);
+            if($row){
+                echo ",";
+            }
+            $row=$this->fetch();
+        }
+        echo "]}";
+    }
+
+    /*
+    *
+    */
+    function showTableToUpdate(){
+        if(!isset($_REQUEST['courseId'])){
+            echo '{"result":0,"message":"Nothing to do"}';
+            return;
+        }
+        $courseId=$_REQUEST['courseId'];
+        $result=$this->showTable($courseId);
+        if(!$result){
+            return;
+        }
+        $row=$this->fetch();
+        echo '{"result":1,"schedule":[';
+        while($row){
+            echo json_encode($row);
+            if($row){
+                    echo ",";
+                }
+                $row=$this->fetch();
+            }
+            echo "]}";
+        }
+
+        /*
+        *
+        */
+        function doUpdateTable(){
+            if(isset($_REQUEST['id'])){
+                $cid=$_REQUEST['id'];
+                $week=$_REQUEST['week'];
+                $wid=$_REQUEST['wid'];
+                $topic=$_REQUEST['topic'];
+                $reading=$_REQUEST['reading'];
+                $milestone=$_REQUEST['milestone'];
+
+                $result=$this->saveUpdatedTable($cid,$wid,$week,$topic,$reading,$milestone);
+                if(!$result){
+                    echo '{"result":0,"message":"Failed to update Schedule"}';
+                    return;
+                }
+                else{
+                    echo '{"result":1,"message":"Updated schedule Successfully"}';
+                    return;
+                }
+        }
+        echo '{"result":0,"message":"No CourseID captured"}';
+    }
+
+    /*this method
+    *
+    */
+    function doUpdateCourse(){
+        if(isset($_REQUEST['id'])){
+            $cid=$_REQUEST['id'];
+            $title=$_REQUEST['title'];
+            $objective=$_REQUEST['objective'];
+            $dept=$_REQUEST['dept'];
+            $evaluate=$_REQUEST['evaluate'];
+            $read=$_REQUEST['read'];
+            $goal=$_REQUEST['goals'];
+            $semester=$_REQUEST['semester'];
+            $facid=$_REQUEST['fid'];
+
+            $result=$this->saveUpdatedCourse($cid,$title,$objective,$dept,$evaluate,$read,$goal,$semester,$facid);
+            if(!$result){
+                    echo '{"result":0,"message":"Failed to update Course Outline"}';
+                    return;
+                }
+                else{
+                    echo '{"result":1,"message":"Updated Course Outline Successfully"}';
+                    return;
+                }
+        }
+        echo '{"result":0,"message":"No CourseID captured"}';
+    }
 }
 /*
  * Creates an object of courseOutlineControl class
@@ -47,7 +151,18 @@ if (isset($_REQUEST['cmd'])) {
     $cmd=$_REQUEST['cmd'];
 
     switch ($cmd) {
-
+        case 1:
+            $outlineController->showCourseToUpdate();
+            break;
+        case 2:
+            $outlineController->doUpdateCourse();
+            break;
+        case 3:
+            $outlineController->doUpdateTable();
+            break;
+        case 4:
+            $outlineController->showTableToUpdate();
+            break;
         case 5:
             $outlineController->deleteCourse();
             break;
@@ -59,3 +174,4 @@ if (isset($_REQUEST['cmd'])) {
 
 
 }
+?>
