@@ -7,14 +7,14 @@
  * Time: 19:47
  */
 include_once(dirname(__FILE__)."\..\phpModel\courseOutline.php");
-/*
+/**
  * This class communicates with the courseOutline class
  * it acts and interface between the model (database & courseOutline.php) and the view (user page)
  *
  */
 class courseOutlineControl extends courseOutline
 {
-/*
+/**
  * This functions get a course to be deleted from the user request
  * It first checks whether the course id was set and only proceeds if it was set
  * It then sends it to courseOutline to delete it
@@ -33,7 +33,8 @@ class courseOutlineControl extends courseOutline
         }
     }
 
-    /**This get the courseid of what the user wants to update
+    /**
+    *This get the courseid of what the user wants to update
     *With the courseId the course Outline with such data is displayed
     *The user then does the modification
     */
@@ -59,8 +60,9 @@ class courseOutlineControl extends courseOutline
         echo "]}";
     }
 
-    /*
-    *
+    /**
+    *Displays the schedule table of the course outline where the user can modify either the week something is due or otherwise.
+    *The user does his/her modifications with the displayed result
     */
     function showTableToUpdate(){
         if(!isset($_REQUEST['courseId'])){
@@ -84,8 +86,9 @@ class courseOutlineControl extends courseOutline
             echo "]}";
         }
 
-        /*
-        *
+        /**
+        *This method takes the changed values the user has input
+        *These new values are then saved into the schedule table
         */
         function doUpdateTable(){
             if(isset($_REQUEST['id'])){
@@ -109,8 +112,8 @@ class courseOutlineControl extends courseOutline
         echo '{"result":0,"message":"No CourseID captured"}';
     }
 
-    /*this method
-    *
+    /*This method gets the new values entered and saved them accordingly
+    *This is done by calling a saveUpdatedCourse function.
     */
     function doUpdateCourse(){
         if(isset($_REQUEST['id'])){
@@ -137,12 +140,12 @@ class courseOutlineControl extends courseOutline
         echo '{"result":0,"message":"No CourseID captured"}';
     }
 }
-/*
+/**
  * Creates an object of courseOutlineControl class
  * Object will be used to call its functions
  */
 $outlineController=new courseOutlineControl();
-/*
+/**
  * Checks whether a command was set
  * It will run the specific methods if there was a command sent to it
  *

@@ -28,9 +28,9 @@ class courseOutline extends adb
     }
 
     /**
-    *this method takes the course id and get the course outline
-    *@param $courseId
-    *@return courseOutline
+    *This method takes the course id and get the course outline
+    *@param String $courseId
+    *@return boolean true if the query ran successfully and false otherwise.
     */
     function showOutline($courseId){
         $sql="select * from courseoutline where courseId='$courseId'";
@@ -39,9 +39,9 @@ class courseOutline extends adb
     }
 
     /**
-    *this method fetches the information in the scheduling table based on courseId
-    *@param $courseId
-    *@return data in the scheduling table
+    *This method fetches the information in the scheduling table based on courseId
+    *@param String $courseId
+    *@return boolean true if the query ran successfully and false otherwise.
     */
     function showTable($courseId){
         $tablename="schedule".$courseId;
@@ -52,7 +52,7 @@ class courseOutline extends adb
 
     /**
     *this method takes in parameter for the updation of the course outline
-    *@param $courseId,$title,$objective,$dept,$evaluate,$read,$goals,$semester,$fid
+    *@param String, String, String, String, String, String, String, String, String $courseId,$title,$objective,$dept,$evaluate,$read,$goals,$semester,$fid
     *
     *@return boolean, true if successful and otherwise false
     */
@@ -64,7 +64,7 @@ class courseOutline extends adb
 
     /**
     *This method updates the table for the course scheduling
-    *@param $courseId,$weekid,$week,$topic,$reading,$milestone
+    *@param  String,String,int,String,String,String $courseId,$weekid,$week,$topic,$reading,$milestone
     *@return boolean, true if successful and otherwise false
     */
     function saveUpdatedTable($courseId,$weekid,$week,$topic,$reading,$milestone){
@@ -74,6 +74,11 @@ class courseOutline extends adb
         return $result;       
     }
 
+    /**
+    *This method gets the course outline with the given course id
+    * @param String $id
+    * @return Object the course Outline with the given id
+    */
     public function getCourseById($id){
             $this->connect();
 
