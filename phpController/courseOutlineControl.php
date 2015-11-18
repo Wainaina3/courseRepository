@@ -57,6 +57,7 @@ function deleteCourse()
 {
     if (!isset($_REQUEST['courseId'])) {
      echo '{"result":0}';
+        exit;
  }
 
  $courseId=$_REQUEST['courseId'];
