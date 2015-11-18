@@ -127,22 +127,6 @@ class courseOutline extends adb
         return $result;       
     }
 
-    /**
-    *This method gets the course outline with the given course id
-    * @param String $id
-    * @return Object the course Outline with the given id
-    */
-    public function getCourseById($id){
-            $this->connect();
-
-            $result=$this->query("select * from courseoutline where courseId = $id");
-
-            if(!$result){
-                return false;
-            }
-
-            return $this->fetch();
-        }
     }
 
 ?>

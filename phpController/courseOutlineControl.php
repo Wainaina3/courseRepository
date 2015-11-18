@@ -13,7 +13,8 @@ include_once(dirname(__FILE__)."\..\phpModel\courseOutline.php");
  * it acts and interface between the model (database & courseOutline.php) and the view (user page)
  *
  */
-class courseOutlineControl extends courseOutline{
+class courseOutlineControl extends courseOutline
+{
 
 function getAllCourseOutline()
 {
@@ -21,11 +22,11 @@ function getAllCourseOutline()
         echo '{"result":0, "message":"No available course outlines"}';
         return;
     }
-    $row=$obj->fetch();
+    $row=$this->fetch();
     echo '{"result":1,"outlines":[';
     while($row){
         echo json_encode($row);
-        $row=$obj->fetch();
+        $row=$this->fetch();
         if($row){
             echo ",";
         }
@@ -35,13 +36,14 @@ function getAllCourseOutline()
 
 function getCourseOutlineById()
 {
+    $cid = $_REQUEST['courseId'];
     if(!$this->getCourseById($cid)){
         echo '{"result":0, "message":"No available course outlines"}';
         return;
     }
     // $row=$obj->fetch();
     echo '{"result":1,"outlines":[';
-    echo json_encode($obj->getCourseById($cid));
+    echo json_encode($this->getCourseById($cid));
     echo "]}";
 }
 
