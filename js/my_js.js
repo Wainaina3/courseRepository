@@ -342,6 +342,35 @@ function get_deptByName(){
 			url: "phpController/uploadControl.php?cmd=1",
 			type: "POST",
 			data: fd,
+			dataType: 'json',
+			contentType: false,
+			processData:false,
+			success: function(data)
+			{
+
+				alert(data.message + " " + "Message from request");
+			},
+			error: function(data){
+
+
+			}
+		});
+	}
+
+	/*
+	* This function will get add faculty form from the web page and send it to the controller for processing
+	 */
+
+	function addFaculty(){
+		alert("called");
+
+		var formElement = document.getElementById("addFaculty");
+		var fd = new FormData(formElement);
+
+		$.ajax({
+			url: "phpController/facultyControl.php?cmd=1",
+			type: "POST",
+			data: fd,
 			//dataType: 'json',
 			contentType: false,
 			processData:false,
@@ -356,7 +385,6 @@ function get_deptByName(){
 			}
 		});
 	}
-
 
 
 

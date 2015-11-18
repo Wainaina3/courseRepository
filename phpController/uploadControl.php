@@ -96,5 +96,6 @@ if (isset($_REQUEST['cmd'])) {
 
         default:
             echo '{"results":0,"message":"No command was sent to this class. Exiting"}';
+            exit;
     }
 }
