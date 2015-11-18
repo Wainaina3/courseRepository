@@ -54,7 +54,7 @@
     <ul id="courseout" class="dropdown-content ">
       <li><a href="#" class="blue-text">Add</a></li>
       <li class="divider"></li>
-      <li><a href="#" class="blue-text">View</a></li>
+      <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
       <li><a href="#" class="blue-text">Add</a></li>

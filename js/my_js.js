@@ -1,3 +1,5 @@
+
+
 	function sendRequest(u){
 		// Send request to server
 		//u a url as a string

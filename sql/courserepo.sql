@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2015 at 06:21 PM
+-- Generation Time: Nov 18, 2015 at 01:58 PM
 -- Server version: 5.5.46
 -- PHP Version: 5.3.10-1ubuntu3.21
 
@@ -39,6 +39,14 @@ CREATE TABLE IF NOT EXISTS `courseoutline` (
   UNIQUE KEY `courseId` (`courseId`),
   UNIQUE KEY `courseTitle` (`courseTitle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `courseoutline`
+--
+
+INSERT INTO `courseoutline` (`courseId`, `courseTitle`, `courseObjectives`, `scheduleTableName`, `courseEvaluation`, `readings`, `courseSemester`, `facultyId`, `departmentId`) VALUES
+('1', 'math', 'jaskdfn\r\nasdfkjn as\r\nasdf', 'hhe', 'dfasdf', 'asdf', 'second', 1, '2'),
+('2', 'ada', 'adfadf', 'ffff', 'asdfsadfff\r\nsdfa\r\nasdf\r\nasdf\r\nadsf\r\nasdf', 'asdfhjmkv', 'cncnjcjj', 4, '5f');
 
 -- --------------------------------------------------------
 
@@ -122,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `jwi_user_code` (`jwi_user_code`),
   UNIQUE KEY `jwi_user_username` (`jwi_user_username`),
   UNIQUE KEY `jwi_user_email` (`jwi_user_email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
