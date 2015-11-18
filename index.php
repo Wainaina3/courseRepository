@@ -54,7 +54,7 @@
     <ul id="courseout" class="dropdown-content ">
       <li><a href="#" class="blue-text">Add</a></li>
       <li class="divider"></li>
-      <li><a href="#" class="blue-text">View</a></li>
+      <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
       <li><a href="#" class="blue-text">Add</a></li>
@@ -117,7 +117,7 @@
 </div>
 
 <div class="row" id="userform">
-COntent here
+Content here
 
 <div id="uploading">
     <form id="fileUpload" method="post" enctype="multipart/form-data">
@@ -150,8 +150,18 @@ Edit here
 </div>
   
 </div>
+<!--  Add viewing here-->
+<table id="course_outlines" name="course_outlines" border="1px" >
 
+  <tr class="theaders" id="theaders" name="theaders" style="background-color:black;color:white;"> 
+  <td> <b>Course ID<b> </td>
+    <td><b> Course Name<b></td>
+    <td> <b>Course Department<b></td>
+    
+  </tr>
 
+</table>
+<!--end of view  -->
 <footer class="page-footer blue lighten-4">
     <div class="row">
       <div class="col l6 s12" style=" float:left;">
@@ -190,6 +200,7 @@ Edit here
  <script type="text/javascript" src="js/my_js.js"></script>
  <script type="text/javascript">
   $( document ).ready(function(){
+    courseOutlines();
     $(".button-collapse").sideNav();
     var orginalWidth = $(window).height();
     $('.slider').slider({full_width: true, height: (orginalWidth/2)});

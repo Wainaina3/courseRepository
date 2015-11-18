@@ -14,10 +14,15 @@
 // define("DB_PWORD","db!o^_r46");
 
 define("DB_HOST", 'localhost');
-define("DB_NAME", 'courserepo');
+define("DB_NAME", 'Repository');
 define("DB_PORT", 3306);
+<<<<<<< HEAD
 define("DB_USER","root");
-define("DB_PWORD","");
+define("DB_PWORD","root");
+=======
+define("DB_USER","dan");
+define("DB_PWORD","linux155");
+>>>>>>> derrick
 
 define("LOG_LEVEL_SEC",0);
 define("LOG_LEVEL_DB_FAIL",0);
