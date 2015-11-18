@@ -15,23 +15,18 @@ class courseOutlineControl extends courseOutline
  */
 public function addCourseControl(){
 
-	$courseTitle=$_REQUEST['courseTitle'];
+	$courseName=$_REQUEST['courseName'];
+	$courseId=$_REQUEST['courseId'];
+	$courseObjective=$_REQUEST['courseObjective'];
+	$courseReadings=$_REQUEST['courseReadings'];
+	$courseDescription=$_REQUEST['courseDescription'];
+	$courseEvaluation=$_REQUEST['courseEvaluation'];
+	$learningGoals=$_REQUEST['learningGoals'];
+	$courseDepartment=$_REQUEST['courseDepartment'];
 
-	// $requestAdd=$this->addCourse($course_name,$course_id,$course_objective,
-	// 		$course_readings,$course_description, $course_evaluation, $learning_goals,$courseDept)
-
-	// if($requestAdd){
-	// 	echo '{"results":0,"message":"success"}';
-	// }
-	// else{
-
-	// }
-	echo '{"results":0,"message":"Got your message","received":"'.$courseTitle.'"}';
-	//request all eements
-
+	echo '{"results":0,"message":"Got your message","received":"'.$courseName.'"}';
 						
 }
-
 
 
 }

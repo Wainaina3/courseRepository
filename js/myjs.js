@@ -2,12 +2,19 @@ function sendOutline(){
 	alert("called");
 	var form=document.getElementById("courseOutline");
 	var formData = new FormData(form);
-	var ctitle=$("#courseTitle").val();
-	alert(ctitle);
+	var cname=$("#courseName").val();
+	var cid=$("#courseId").val();
+	var cobj=$("#courseObjective").val();
+	var cread=$("#courseReadings").val();
+	var cdes=$("#courseDescription").val();
+	var cev=$("#courseEvaluation").val();
+	var lgoals=$("#learningGoals").val();
+	var cdept=$("#courseDepartment").val();
+
 	alert(formData);
 
 	$.ajax({
-		url: "phpController/courseOutlineControl.php?cmd=1&courseTitle="+ctitle,
+		url: "phpController/courseOutlineControl.php?cmd=1",
 		type: "POST",
 		data: formData,
 		dataType: "json",
