@@ -1,12 +1,10 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: David
  * Date: 13/11/2015
  * Time: 19:48
  */
-
 // define("DB_HOST", 'localhost');
 // define("DB_NAME", 'csashesi_david-wainaina');
 // define("DB_PORT", 3306);
@@ -21,7 +19,6 @@ define("DB_PWORD","");
 
 define("LOG_LEVEL_SEC",0);
 define("LOG_LEVEL_DB_FAIL",0);
-
 define("PAGE_SIZE",10);
 /*
  * This function should log errors to a file.
@@ -37,10 +34,8 @@ function log_msg($level, $er_code, $msg, $mysql_msg){
  * This class will be used to connect to the database.
  * The database connections are defined above.
  */
-
 class adb
 {
-
     /**error description*/
     var $str_error;
     /*error code*/
@@ -51,20 +46,18 @@ class adb
     var $er_code_prefix;
     /* query result resource*/
     var $result;
-/*
- * Constructor to initialize the class
- * The er_code prefix is initialized to 100
- * The link is initialized to false
- * The result is initialized false
- */
+    /*
+     * Constructor to initialize the class
+     * The er_code prefix is initialized to 100
+     * The link is initialized to false
+     * The result is initialized false
+     */
     function adb()
     {
-
         $this->er_code_prefix=1000;
         $this->link=false;
         $this->result = false;
     }
-
     /**
      * logs error into database using functions defined in log.php
      * @param int $level Level of error to be logged
@@ -82,19 +75,16 @@ class adb
         if (!$log_id) {
             return 0;
         }
-
         //display this code to user
         $this->error="$er_code-$log_id";
         return $log_id;
     }
-
     /**
      * creates connection to database
      * @return boolean It returns tru when there was a successful connection and false when it fails to connect
      */
     function connect()
     {
-
         if($this->link)
         {
             return true;
@@ -104,12 +94,9 @@ class adb
         //@param string $DB_USER the user name of database server
         //@param string $DB_PWORD the password of the database server
         $this->link = mysqli_connect(DB_HOST , DB_USER, DB_PWORD);
-
         if (!$this->link) {
             //if connection fail log error and set $str_error
-
-            $this->log_error(LOG_LEVEL_DB_FAIL,1, "connection failed  in db:connect()", mysqli_error());
-
+            $this->log_error(LOG_LEVEL_DB_FAIL,1, "connection failed  in db:connect()", mysqli_error($this->link));
             return false;
         }
         //Tries to select a database
@@ -118,11 +105,8 @@ class adb
             $log_id = $this->log_error(LOG_LEVEL_DB_FAIL,2, "select db failed   in db:connect()", mysqli_error($this->link));
             return false;
         }
-
         return true;
     }
-
-
     /**
      *This function gets data from the query results.
      * @return string It returns an associative array of one row of the result.
@@ -131,7 +115,6 @@ class adb
     {
         return mysqli_fetch_assoc($this->result);
     }
-
     /**
      * This function connects to the database by calling the $connect function
      * It then runs query on the database
@@ -146,15 +129,13 @@ class adb
             return false;
         }
         //sets result by running mysqli_query on the given string
-        $this->result = mysqli_query($this->link,$str_sql);
+        $this->result = mysqli_query($str_sql,$this->link);
         if (!$this->result) {
             $this->log_error(LOG_LEVEL_DB_FAIL, 4, "query failed", mysqli_error($this->link));
             return false;
         }
-
         return true;
     }
-
     /**
      * This function returns the number of rows in the dataset from the database
      * @return integer It returns the number of rows.

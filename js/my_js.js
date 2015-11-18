@@ -1,3 +1,5 @@
+
+
 	function sendRequest(u){
 		// Send request to server
 		//u a url as a string
@@ -21,49 +23,80 @@
 
 		if(results.result!=0){		
 
-
 			for(i=0;i<results.outlines.length;i++){
-				if(results.outlines[i].course_dept=='cs'){
-					cs=document.getElementById("csTable");
-					csrow=cs.rows.length;
-					row=cs.insertRow(csrow);
-					cid=row.insertCell(0);
-					cname=row.insertCell(1);
-					cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";;
-					cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
+				
 
+				tblrows=tbl.rows.length;
+				row=tbl.insertRow(tblrows);
+			
+				if(i%2==0){
+					row.style="background-color:#EEEEEE";
 				}
-				else if(results.outlines[i].course_dept=='as'){
-					as=document.getElementById("asTable");
-					asrow=as.rows.length;
-					row=as.insertRow(asrow);
-					cid=row.insertCell(0);
-					cname=row.insertCell(1);
-					cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-					cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
-				}
-				else if(results.outlines[i].course_dept=='ba'){
-					ba=document.getElementById("baTable");
-					barow=ba.rows.length;
-					row=ba.insertRow(barow);
-					cid=row.insertCell(0);
-					cname=row.insertCell(1);
-					cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-					cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
+				cid=row.insertCell(0);
+				cname=row.insertCell(1);
+				cdept=row.insertCell(2);
+				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].courseId +"'>"+results.outlines[i].courseId +"</a>";;
+				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].courseId +"'>"+results.outlines[i].courseTitle +"</a>";
+				cdept.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].courseId +"'>"+results.outlines[i].courseDepartment +"</a>";
 
-				}
-				else if(results.outlines[i].course_dept='eng'){
-					eng=document.getElementById("engTable");
-					engrow=eng.rows.length;
-					row=eng.insertRow(engrow);
-					cid=row.insertCell(0);
-					cname=row.insertCell(1);
-					cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-					cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>"; 
-				}
+
 			}
 		}
 	}
+
+	
+	
+
+	// function courseOutlines(){
+
+	// 	var results=sendRequest("manipulation.php?cmd=2");
+	// 	var tbl= document.getElementById("course_outlines");
+
+	// 	if(results.result!=0){		
+
+
+	// 		for(i=0;i<results.outlines.length;i++){
+	// 			if(results.outlines[i].course_dept=='cs'){
+	// 				cs=document.getElementById("csTable");
+	// 				csrow=cs.rows.length;
+	// 				row=cs.insertRow(csrow);
+	// 				cid=row.insertCell(0);
+	// 				cname=row.insertCell(1);
+	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";;
+	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
+
+	// 			}
+	// 			else if(results.outlines[i].course_dept=='as'){
+	// 				as=document.getElementById("asTable");
+	// 				asrow=as.rows.length;
+	// 				row=as.insertRow(asrow);
+	// 				cid=row.insertCell(0);
+	// 				cname=row.insertCell(1);
+	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
+	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
+	// 			}
+	// 			else if(results.outlines[i].course_dept=='ba'){
+	// 				ba=document.getElementById("baTable");
+	// 				barow=ba.rows.length;
+	// 				row=ba.insertRow(barow);
+	// 				cid=row.insertCell(0);
+	// 				cname=row.insertCell(1);
+	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
+	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
+
+	// 			}
+	// 			else if(results.outlines[i].course_dept='eng'){
+	// 				eng=document.getElementById("engTable");
+	// 				engrow=eng.rows.length;
+	// 				row=eng.insertRow(engrow);
+	// 				cid=row.insertCell(0);
+	// 				cname=row.insertCell(1);
+	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
+	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>"; 
+	// 			}
+	// 		}
+	// 	}
+	// }
 	//validating empty fields
 	function check_empty () {
 		// body...
@@ -342,6 +375,38 @@ function get_deptByName(){
 			url: "phpController/uploadControl.php?cmd=1",
 			type: "POST",
 			data: fd,
+<<<<<<< HEAD
+=======
+			dataType: 'json',
+			contentType: false,
+			processData:false,
+			success: function(data)
+			{
+
+				alert(data.message + " " + "Message from request");
+			},
+			error: function(data){
+
+
+			}
+		});
+	}
+
+	/*
+	* This function will get add faculty form from the web page and send it to the controller for processing
+	 */
+
+	function addFaculty(){
+		alert("called");
+
+		var formElement = document.getElementById("addFaculty");
+		var fd = new FormData(formElement);
+
+		$.ajax({
+			url: "phpController/facultyControl.php?cmd=1",
+			type: "POST",
+			data: fd,
+>>>>>>> davidV1
 			//dataType: 'json',
 			contentType: false,
 			processData:false,
@@ -358,6 +423,9 @@ function get_deptByName(){
 	}
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> davidV1
 
 
