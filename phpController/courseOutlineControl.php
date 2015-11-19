@@ -112,7 +112,8 @@ class courseOutlineControl extends courseOutline
         echo '{"result":0,"message":"No CourseID captured"}';
     }
 
-    /*This method gets the new values entered and saved them accordingly
+    /**
+    *This method gets the new values entered and saved them accordingly
     *This is done by calling a saveUpdatedCourse function.
     */
     function doUpdateCourse(){
