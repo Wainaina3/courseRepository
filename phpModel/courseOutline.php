@@ -52,6 +52,15 @@ class courseOutline extends adb
 		return $this->fetch();
 	}
 
+    public function getCourseById($id){
+        $result=$this->query("select * from courseoutline where courseId='$id'");
+
+        if(!$result){
+            return false;
+        }
+
+        return $this->fetch();
+    }
 
     /**
      * This function deletes a course outline from the database
