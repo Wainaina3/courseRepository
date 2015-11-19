@@ -119,7 +119,31 @@
 <div class="row" id="userform">
 Content here
 
+<div id="uploading">
+    <form id="fileUpload" method="post" enctype="multipart/form-data">
+       <label for="courseId" id="cidLabel">Course ID: </label>
+        <input type="text" id="courseId" name="courseId">
+        <label for="courseTitle" id="titleLabel"> Course Title: </label>
+        <input type="text" id="courseTitle" name="courseTitle">
 
+        <div class="input-field col s12">
+            <select id="semester" name="semester">
+                <option value="" selected>Choose Semester</option>
+                <option value="Fall">Fall</option>
+                <option value="Spring">Spring</option>
+
+            </select>
+            <label> Semester:</label>
+        </div>
+
+        <label for="facultyID" id="fidLabel"> Faculty ID: </label>
+        <input id="facultyId" name="facultyId" type="text">
+        <input type="file" id="myFile" name="myFile" accept="applications/pdf">
+        <br>
+        <input type="button" value="Upload" onclick="uploadFile()">
+
+    </form>
+</div>
 Edit here
 <div id="deleteTest">
     <button id="deleteButton" onclick="deleteCourse('12')">Delete</button>
