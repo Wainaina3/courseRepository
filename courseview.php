@@ -6,42 +6,52 @@
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
   <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
+  <script type="text/javascript" src="js/my_js.js"></script>
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
   <script type="text/javascript">
-  //   function check(){
-  //     var dob = "<?php //echo $_SESSION['jwi_user_dob']; ?>";
-  //     var des = "<?php //echo $_SESSION['jwi_user_description']; ?>";
-  //     var con = "<?php //echo $_SESSION['jwi_user_contact']; ?>";
-  //     var cv = "<?php //echo $_SESSION['jwi_user_cv']; ?>";
-  //     if(dob=="0000-00-00"||des=="null"||con=="null"||cv=="null"){
-  //      Materialize.toast("Please try to complete your profile details.", 4000);  
-  //    }
-  //  }
-  //  function logout(){
-  //    $.get("user_con.php",{act:2},
-  //     function(data){
-  //      if(data){
-  //       window.location="index.php"; 
-  //     }
-  //   });
-  //  }
+  function getCourseData(){
+    $.get( 
+     "phpController/courseOutlineControl.php", {cmd: 7},
+     function(data) {
+      for (var i=0; i<data.outlines.length; i++) {
+        var row = stage.insertRow();  
 
-  //  function php() {
-  //   var image = "<?php //echo $_SESSION['jwi_user_propic']; ?>";
-  //   if(image=="null"){
-  //     image = "images/default-user.png";
-  //   }
-  //   document.getElementById('pic').setAttribute('src',image);
-  //   document.getElementById('pics').setAttribute('src',image);
-  // }
+        var cell = row.insertCell();
+        cell.innerHTML= data.outlines[i]["courseId"];
+
+        var cell = row.insertCell();
+        cell.innerHTML= data.outlines[i]["courseTitle"];
+
+        var cell = row.insertCell();
+        cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.outlines[i]["courseId"]+")'>Details</a></li>";
+
+        var cell = row.insertCell();
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=update_job_ad.php?jid="+data.outlines[i]["courseId"]+">Update</a></li>";
+
+        var cell = row.insertCell();
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.outlines[i]["courseId"]+") '>Delete</a></li>";
+      }
+    },"json");
+  }
+
+  function modal(id){
+    $.get( 
+     "phpController/courseOutlineControl.php", {cmd: 6,cid:id},
+     function(data) {
+      console.log("here " +data.outlines[0]["courseTitle"]);
+      document.getElementById('modhed').innerHTML = data.outlines[0]["courseTitle"];
+      document.getElementById('moddet').innerHTML = "Objectives: "+data.outlines[0]["courseObjectives"];
+    },"json");
+    $('#modal1').openModal();          
+  }
+
 </script>
 
 </head>
 
-<body class="#bbdefb blue lighten-4">
+<body class="#bbdefb blue lighten-4" >
  <div class="container z-depth-5"  id="indexcon">
    <div class="navbar-fixed" >
      <ul id="user" class="dropdown-content ">
@@ -73,7 +83,7 @@
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
               <span class="blue-text" style="float:right; padding-left:25%; " >
-               <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+                <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
               </span>
             </div>
             <div class="col s1">&nbsp;</div>
@@ -117,70 +127,81 @@
 </div>
 
 <div class="row" id="userform">
-Content here
+  <div class="col l4">&nbsp;</div>
+  <div class="col s12 m6 l4" align="center"><h4>List of Courseoutlines</h4></div>
+  <table class="bordered centered highlight">
+    <thead>
+      <tr>
+        <th data-field="id">Course Id</th>
+        <th data-field="name">Course Title</th>
+      </tr>
+    </thead>
 
+    <tbody id="stage">
 
-Edit here
-<div id="deleteTest">
-    <button id="deleteButton" onclick="deleteCourse('12')">Delete</button>
-</div>
+    </tbody>
+  </table>
+  <!-- Modal Trigger -->
+  <!-- <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a> -->
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 id="modhed"></h4>
+      <p id="moddet"></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+    </div>
+  </div>
   
 </div>
-<!--  Add viewing here-->
-<table id="course_outlines" name="course_outlines" border="1px" >
 
-  <tr class="theaders" id="theaders" name="theaders" style="background-color:black;color:white;"> 
-  <td> <b>Course ID<b> </td>
-    <td><b> Course Name<b></td>
-    <td> <b>Course Department<b></td>
-    
-  </tr>
 
-</table>
-<!--end of view  -->
 <footer class="page-footer blue lighten-4">
-    <div class="row">
-      <div class="col l6 s12" style=" float:left;">
-        <h5 class="black-text">Contact Us</h5>
-        <p class="black-text text-lighten-4">Softeware Engineering<br>
-          Ashesi University<br>
-          Berekusu<br>
-        </p>
-        <p class="black-text text-lighten-4">Mobile:  +233-23 232 2323</p>
-        <p class="black-text text-lighten-4">Email:   couserepo@gmail.com</p>
+  <div class="row">
+    <div class="col l6 s12" style=" float:left;">
+      <h5 class="black-text">Contact Us</h5>
+      <p class="black-text text-lighten-4">Softeware Engineering<br>
+        Ashesi University<br>
+        Berekusu<br>
+      </p>
+      <p class="black-text text-lighten-4">Mobile:  +233-23 232 2323</p>
+      <p class="black-text text-lighten-4">Email:   couserepo@gmail.com</p>
 
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="black-text">Quick Links</h5>
-        <ul>
-          <li><a class="black-text text-lighten-3" href="#!">Facebook</a></li>
-          <li><a class="black-text text-lighten-3" href="#!">Twitter</a></li>
-          <li><a class="black-text text-lighten-3" href="#!">Instagram</a></li>
-        </ul>
-      </div>
     </div>
+    <div class="col l4 offset-l2 s12">
+      <h5 class="black-text">Quick Links</h5>
+      <ul>
+        <li><a class="black-text text-lighten-3" href="#!">Facebook</a></li>
+        <li><a class="black-text text-lighten-3" href="#!">Twitter</a></li>
+        <li><a class="black-text text-lighten-3" href="#!">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
   
   <div class="footer-copyright" >
     <div class="black-text center-align"  >
       © 2015 Group 9 - All Rights Reserved 
       <!-- <a class="black-text text-lighten-4 right" href="#!">More Links</a> -->
     </div>
-    </div>
+  </div>
 </footer>
 </div>
 
 
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
- <script type="text/javascript" src="js/my_js.js"></script>
- <script type="text/javascript">
+<script type="text/javascript">
   $( document ).ready(function(){
-    courseOutlines();
-    $(".button-collapse").sideNav();
-    var orginalWidth = $(window).height();
-    $('.slider').slider({full_width: true, height: (orginalWidth/2)});
-  });
+   getCourseData();
+   $('.modal-trigger').leanModal();
+   $(".button-collapse").sideNav();
+
+   var orginalWidth = $(window).height();
+   $('.slider').slider({full_width: true, height: (orginalWidth/2)});
+ });
   // $(function() {
   //   $(window).resize(function() {
   //      var orginalWidth = $(window).height();
