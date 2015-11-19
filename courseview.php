@@ -28,7 +28,7 @@
         cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.outlines[i]["courseId"]+")'>Details</a></li>";
 
         var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=update_job_ad.php?jid="+data.outlines[i]["courseId"]+">Update</a></li>";
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=updateCourse.php?upid="+data.outlines[i]["courseId"]+">Update</a></li>";
 
         var cell = row.insertCell();
         cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.outlines[i]["courseId"]+") '>Delete</a></li>";
@@ -82,9 +82,7 @@
           <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
-              <span class="blue-text" style="float:right; padding-left:25%; " >
-                <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
-              </span>
+             
             </div>
             <div class="col s1">&nbsp;</div>
             <div class="col s5 ">

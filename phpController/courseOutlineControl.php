@@ -21,11 +21,11 @@ function getAllCourseOutline()
         echo '{"result":0, "message":"No available course outlines"}';
         return;
     }
-    $row=$obj->fetch();
+    $row=$this->fetch();
     echo '{"result":1,"outlines":[';
     while($row){
         echo json_encode($row);
-        $row=$obj->fetch();
+        $row=$this->fetch();
         if($row){
             echo ",";
         }
