@@ -57,7 +57,7 @@
       <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
-      <li><a href="#" class="blue-text">Add</a></li>
+      <li><a href="#modal1" class="blue-text waves-effect waves-light modal-trigger">Add</a></li>
       <li class="divider"></li>
       <li><a href="#" class="blue-text">View</a></li>
     </ul>
@@ -116,7 +116,42 @@
 </nav>
 </div>
 
+<div id="modal1" class="modal">
+
+  <div class="modal-content">
+    <h4> Add Faculty Member</h4>
+    <form id="addFaculty" method="POST" enctype="multipart/form-data">
+        <label for="facultyId">Faculty ID:</label>
+        <input type="text" id="facultyId" name="facultyId">
+        <label for="facultyUsername">Faculty Username:</label>
+        <input type="text" id="facultyUsername" name="facultyUsername">
+        <label for="facultyFirstName"> First Name:</label>
+        <input type="text" id="facultyFirstName" name="facultyFirstName">
+        <label for="facultyLastName"> Last Name:</label>
+        <input type="text" id="facultyLastName" name="facultyLastName">
+
+         <div class="input-field col s12">
+            <select id="departmentId" name="departmentId">
+            <option value="" selected>Choose Department</option>
+            <option value="CS"> CS</option>
+            <option value="BA"> BA</option>
+            <option value="Eng">Eng</option>
+            <option value="Arts">Arts</option>
+
+            </select>
+            <label> DepartmentID</label>
+        </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+     <a href="#!" onclick="addFaculty()" class=" btn modal-action modal-close waves-effect waves-green btn-flat">Save Faculty</a>
+  </div>
+
+</div>
+
 <div class="row" id="userform">
+
 Content here
 
 <div id="uploading">
@@ -195,13 +230,16 @@ Edit here
 
 
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
  <script type="text/javascript" src="js/my_js.js"></script>
  <script type="text/javascript">
   $( document ).ready(function(){
-    courseOutlines();
+    //courseOutlines();
+
     $(".button-collapse").sideNav();
+    $(".modal-trigger").leanModal();
+
     var orginalWidth = $(window).height();
     $('.slider').slider({full_width: true, height: (orginalWidth/2)});
   });

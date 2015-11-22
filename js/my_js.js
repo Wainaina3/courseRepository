@@ -375,13 +375,13 @@ function get_deptByName(){
 			url: "phpController/uploadControl.php?cmd=1",
 			type: "POST",
 			data: fd,
-			dataType: 'json',
+			//dataType: 'json',
 			contentType: false,
 			processData:false,
 			success: function(data)
 			{
 
-				alert(data.message + " " + "Message from request");
+				alert(data + " " + "Message from request");
 			},
 			error: function(data){
 

@@ -129,7 +129,7 @@ class adb
             return false;
         }
         //sets result by running mysqli_query on the given string
-        $this->result = mysqli_query($str_sql,$this->link);
+        $this->result = mysqli_query($this->link,$str_sql);
         if (!$this->result) {
             $this->log_error(LOG_LEVEL_DB_FAIL, 4, "query failed", mysqli_error($this->link));
             return false;
@@ -142,7 +142,7 @@ class adb
      */
     function get_num_rows()
     {
-        return mysql_num_rows($this->result);
+        return mysqli_num_rows($this->result);
     }
     /**
      *gets the last auto-generated id
