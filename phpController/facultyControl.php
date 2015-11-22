@@ -20,7 +20,7 @@ include_once(dirname(__FILE__)."\..\phpModel\faculty.php");
  */
 class facultyControl extends faculty
 {
-    /*
+    /**
      * This function gets data from the add faculty Form and sends them to the model.
      * It requests the $facultyId, $facultyUsername, $facultyFirstName, $facultyLastName and $departmentId
      * The values of those add faculty form are then sent to the model by calling addFaculty method and feeding it the parameters
@@ -42,6 +42,54 @@ function addFacultyControl()
     echo '{"results":1,"message":"Faculty succesfully added to the database"}';
 
 }
+    
+    /**
+    *Viewing all faculty members
+    */
+    function viewFaculty(){
+        $result=$this->viewFaculty();
+        if(!$result){
+            echo '{"result":0,"message":"Failed to query"}';
+            return;
+        }
+        else{
+            $row=$this->fetch();
+            echo '{"result":1,"faculty":[';
+            while($row){
+                echo json_encode($row);
+                if($row){
+                    echo ",";
+                }
+            }
+            echo "]}";
+        }
+    }
+
+
+    /**
+    *Viewing a specific kind of faculty member(s) based on a search text or number
+    */
+    function searchFacultyByWhat(){
+        if(isset($_REQUEST['search'])){
+            $search=$_REQUEST['search'];
+            $result=$this->searchAFaculty($search);
+            if(!$result){
+                echo '{"result":0,"message":"No such Faculty member exist in the database"}';
+            return;
+            }
+            else{
+              $row=$this->fetch();
+            echo '{"result":1,"faculty":[';
+            while($row){
+                echo json_encode($row);
+                if($row){
+                    echo ",";
+                }
+            }
+            echo "]}";
+        }
+    }
+    }
 }
 /*
  * Creates an instance of facultyControl class
@@ -57,7 +105,11 @@ if(isset($_REQUEST['cmd'])){
             $facultyController->addFacultyControl();
             break;
         case 2:
+        $facultyController->searchFacultyByWhat();
             break;
+        case 3:
+        $facultyController->viewFaculty();
+        break;
         default:
             exit;
     }
