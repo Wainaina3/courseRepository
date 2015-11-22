@@ -53,14 +53,14 @@ class faculty extends adb
     *@param String $fname this takes either first or last name of the faculty
     *@return Object faculty
     */
-    function searchFaculty($fid,$fname){
-    	$sql="select * from faculty where facultyLastName like '%$fname%' or facultyFirstName like 'fname%' or facultyId='$fid'";
+    function searchAFaculty($search){
+    	$sql="select * from faculty where facultyLastName like '%$search%' or facultyFirstName like 'search%' or facultyId='$search'";
     	$result=$this->query($sql);
     	if(!$result){
     		return false;
     	}
     	else{
-    		return $this->fetch();
+    		return true;
     	}
     }
 }
