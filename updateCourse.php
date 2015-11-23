@@ -1,4 +1,3 @@
-<?php?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,47 +103,17 @@
 		<div class="row">
 			<div class="col s12 m6 l4" align="center"><h4>Update Courseoutlines</h4></div>
 		</div>
-		<?php
-		include("phpController/courseOutlineControl.php");
-		$obj=new courseOutlineControl();
-
-		if(isset($_REQUEST['upid'])){
-			$scip=$_REQUEST['upid'];
-			$detail=$obj->getCourseById($scip);
-			$sched=$obj->showTable($scip);
-
-		echo "<br>";
-		echo "<div><div class='headers'><strong>COURSE ID</strong></div><input type='text' length='30' name='cid' id='cid' value='{$detail['courseId']}'></div>";
-		echo "<div><div class='headers'><strong>COURSE NAME</strong></div><input type='text' id='cna' name='cna' value='{$detail['courseTitle']}'></div>";
-		echo "<div><div class='headers'><strong>COURSE DEPARTMENT</strong></div><input type='text' id='cdep' name='cdep' value={$detail['courseDepartment']}></div>";
-		echo "<div><div class='headers'><strong>COURSE OBJECTIVE</strong></div><textarea class='ckeditor' col='10' row='25' id='cobj' name='cobj'>{$detail['courseObjectives']}</textarea></div>";
-		echo "<div><div class='headers'><strong>COURSE DESCRIPTION</strong></div><textarea class='ckeditor' col='10' row='25' id='cdes' name='cdes'>{$detail['courseDescription']}</textarea></div>";
-		echo "<div><div class='headers'><strong>LEARNING GOALS</strong></div><textarea class='ckeditor' col='10' row='25' id='goals' name='goals'>{$detail['learninggoals']}</textarea></div>";
-
-		echo "<div class='headers' id='scheduler' name='scheduler'><strong> COURSE SCHEDULER</strong>
-			<table id='schedule' name='schedule' bordered centered highlight>";
-			echo	"<div id='schedule_header' name='schedule_header'> <thead id='table_headers' name='table_headers' width='50%'>"; 
-			echo		"<th><b>Weeks</b></th>";
-			echo		"<th><b>Topics</b></th>";
-			echo		"<th><b>Readings</b></th>";
-			echo		"<th><b>Milestones</b></th>";
-			echo	"</thead></div>";
-			echo	"<tbody id='thetab'>";
-				while($row=$obj->fetch()){
-					echo '<tr  align="center" contenteditable="true">';
-					echo '<td>'. $row["weeks"].' </td> <td>'. $row["topics"].' </td> <td>'.$row["readings"].' </td> <td>'.$row["milestones"].'</td>' ;
-				}	echo '</tr>';
-			echo	"</tbody>";
-			echo "</table></div><br>";
-			echo "<div><div>COURSE EVALUATIONS</div><textarea class='ckeditor' col='10' row='10' id='evaluate' name='evaluate'>{$detail['courseEvaluation']}</textarea></div>";
-			echo "<div> <div class='headers'> COURSE READINGS </div> <textarea class='ckeditor' col='10' row='10' id='creads' name='creads'>{$detail['readings']}</textarea></div>";
-			echo "<div> <div class='headers'> <strong>SEMESTER </strong></div> <textarea class='ckeditor' col='10' row='10' id='csem' name='csem'>{$detail['courseSemester']}</textarea></div>";
-			echo "<div> <div class='headers'><strong> FACULTY ID </strong></div> <textarea class='ckeditor' col='10' row='10' id='cfid' name='cfid'>{$detail['facultyId']}</textarea></div>";
-			echo "<br>";
-			echo "<div><center><button id='addbt'>SAVE UPDATE</button></center></div>";
-			
-		}
-		?>
+		<div>
+        <span id="contentShow">
+        </span>
+    </div>
+      <?php
+      if(isset($_REQUEST['upid'])){
+        $id=$_REQUEST['upid'];
+        echo "<input type='hidden' id='space' value='$id'>";
+      }
+      ?>
+    
 		<footer class="page-footer blue lighten-4">
   <div class="row">
     <div class="col l6 s12" style=" float:left;">
@@ -174,5 +143,12 @@
     </div>
   </div>
 </footer>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/materialize.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+displayCourse();
+});
+</script>
 </body>
 </html>
