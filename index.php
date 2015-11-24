@@ -11,32 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
   <script type="text/javascript">
-  //   function check(){
-  //     var dob = "<?php echo $_SESSION['jwi_user_dob']; ?>";
-  //     var des = "<?php echo $_SESSION['jwi_user_description']; ?>";
-  //     var con = "<?php echo $_SESSION['jwi_user_contact']; ?>";
-  //     var cv = "<?php echo $_SESSION['jwi_user_cv']; ?>";
-  //     if(dob=="0000-00-00"||des=="null"||con=="null"||cv=="null"){
-  //      Materialize.toast("Please try to complete your profile details.", 4000);  
-  //    }
-  //  }
-  //  function logout(){
-  //    $.get("user_con.php",{act:2},
-  //     function(data){
-  //      if(data){
-  //       window.location="index.php"; 
-  //     }
-  //   });
-  //  }
 
-  //  function php() {
-  //   var image = "<?php echo $_SESSION['jwi_user_propic']; ?>";
-  //   if(image=="null"){
-  //     image = "images/default-user.png";
-  //   }
-  //   document.getElementById('pic').setAttribute('src',image);
-  //   document.getElementById('pics').setAttribute('src',image);
-  // }
 </script>
 
 </head>
@@ -73,7 +48,7 @@
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
               <span class="blue-text" style="float:right; padding-left:25%; " >
-                <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+               <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?> 
               </span>
             </div>
             <div class="col s1">&nbsp;</div>
@@ -94,7 +69,7 @@
         <div class="row user" >
          <div class="col s7 m7" id="uname">
           <span class="blue-text " style="float:left; font-size:80%; ">
-           <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+           <?php // echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
          </span>
        </div>
        <div class="col s5 m5" >
@@ -117,6 +92,13 @@
 </div>
 
 <div class="row" id="userform">
+  <div id="myOutline">
+    <form id="courseOutline" method="POST" enctype="multipart/form-data">
+      <label for="courseTitle"> Course Title</label>
+      <input id="courseTitle" type="text">
+      <input type="button" value="submit" onclick="sendOutline()" >
+    </form>
+  </div>
 COntent here
 
 
@@ -161,19 +143,10 @@ Edit here
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
+<script type="text/javascript" src="js/myjs.js"> </script>
 <script type="text/javascript">
-  $( document ).ready(function(){
-    $(".button-collapse").sideNav();
-    var orginalWidth = $(window).height();
-    $('.slider').slider({full_width: true, height: (orginalWidth/2)});
-  });
-  // $(function() {
-  //   $(window).resize(function() {
-  //      var orginalWidth = $(window).height();
-  //    $('.slider').slider({height: (orginalWidth/2)});
 
-  //   });
-  // });
+
 </script>
 </body>
 
