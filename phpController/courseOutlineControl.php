@@ -14,6 +14,7 @@ class courseOutlineControl extends courseOutline
  *Adding a course outline
  */
 public function addCourseControl(){
+<<<<<<< HEAD
 	$courseTitle=$_REQUEST['courseTitle'];
 
 	// $requestAdd=$this->addCourse($course_name,$course_id,$course_objective,
@@ -48,4 +49,37 @@ if(isset($_REQUEST['cmd'])) {
 	}
 }
 
+=======
+
+	$courseName=$_REQUEST['courseName'];
+	$courseId=$_REQUEST['courseId'];
+	$courseObjective=$_REQUEST['courseObjective'];
+	$courseReadings=$_REQUEST['courseReadings'];
+	$courseDescription=$_REQUEST['courseDescription'];
+	$courseEvaluation=$_REQUEST['courseEvaluation'];
+	$learningGoals=$_REQUEST['learningGoals'];
+	$courseDepartment=$_REQUEST['courseDepartment'];
+
+	echo '{"results":0,"message":"Got your message","received":"'.$courseName.'"}';
+						
+}
+
+
+}
+$outline = new courseOutlineControl();
+
+if(isset($_REQUEST['cmd'])) {
+
+	$cmd=$_REQUEST['cmd'];
+
+	switch ($cmd) {
+		case 1:
+			$outline->addCourseControl();
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+>>>>>>> 63a632b9fd282cc640870b6e4aad431c17d7e226
 }
