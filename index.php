@@ -51,7 +51,7 @@
       <li class="divider"></li>
       <li><a href="#!" onclick="" class="blue-text">Logout</a></li>
     </ul>
-    <ul id="courseout" class="dropdown-content ">
+    <ul id="courseout" class="dropdown-content">
       <li><a href="#" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="courseview.php" class="blue-text">View</a></li>
@@ -67,8 +67,8 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down" >
           <li><a href="home.php" class="blue-text">Home</a></li>
-          <li><a href="job_ads.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
-          <li><a href="events.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
           <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
@@ -159,7 +159,7 @@ Edit here
 
 
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
 <script type="text/javascript">
   $( document ).ready(function(){
