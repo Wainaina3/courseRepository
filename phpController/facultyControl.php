@@ -2,8 +2,8 @@
 
 /**
  * Created by PhpStorm.
- * User: David
- * Date: 13/11/2015
+ * User: David & Daniel
+ * Date: 13/11/2015, 24/11/2015
  * Time: 19:47
  */
 /*
@@ -11,7 +11,7 @@
  * It also contains an instance of that class which is used to call its functions.
  * The functions to be called are determined by the command sent from the javascript request.
  */
-include_once("phpModel/faculty.php");
+include_once(dirname(__FILE__).'\..\phpModel\faculty.php');
 /*
  * This class is used to interface between the faculty model class and the view.
  * Data from the view are fetched in this class and processed to be sent to the faculty model.
