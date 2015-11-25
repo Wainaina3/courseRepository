@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: David
+ * User: David & daniel
  * Date: 13/11/2015
  * Time: 19:49
  * This file contains a model class for interfacing with the database and controller
