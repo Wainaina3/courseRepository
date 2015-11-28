@@ -12,10 +12,10 @@
   
   <script type="text/javascript">
   //   function check(){
-  //     var dob = "<?php echo $_SESSION['jwi_user_dob']; ?>";
-  //     var des = "<?php echo $_SESSION['jwi_user_description']; ?>";
-  //     var con = "<?php echo $_SESSION['jwi_user_contact']; ?>";
-  //     var cv = "<?php echo $_SESSION['jwi_user_cv']; ?>";
+  //     var dob = "<?php //echo $_SESSION['jwi_user_dob']; ?>";
+  //     var des = "<?php //echo $_SESSION['jwi_user_description']; ?>";
+  //     var con = "<?php //echo $_SESSION['jwi_user_contact']; ?>";
+  //     var cv = "<?php //echo $_SESSION['jwi_user_cv']; ?>";
   //     if(dob=="0000-00-00"||des=="null"||con=="null"||cv=="null"){
   //      Materialize.toast("Please try to complete your profile details.", 4000);  
   //    }
@@ -30,7 +30,7 @@
   //  }
 
   //  function php() {
-  //   var image = "<?php echo $_SESSION['jwi_user_propic']; ?>";
+  //   var image = "<?php //echo $_SESSION['jwi_user_propic']; ?>";
   //   if(image=="null"){
   //     image = "images/default-user.png";
   //   }
@@ -73,7 +73,7 @@
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
               <span class="blue-text" style="float:right; padding-left:25%; " >
-                <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+               <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
               </span>
             </div>
             <div class="col s1">&nbsp;</div>
@@ -94,7 +94,7 @@
         <div class="row user" >
          <div class="col s7 m7" id="uname">
           <span class="blue-text " style="float:left; font-size:80%; ">
-           <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+           <?php// echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
          </span>
        </div>
        <div class="col s5 m5" >
@@ -117,15 +117,50 @@
 </div>
 
 <div class="row" id="userform">
-COntent here
 
+<div id="uploading">
+    <form id="fileUpload" method="post" enctype="multipart/form-data">
+       <label for="courseId" id="cidLabel">Course ID: </label>
+        <input type="text" id="courseId" name="courseId">
+        <label for="courseTitle" id="titleLabel"> Course Title: </label>
+        <input type="text" id="courseTitle" name="courseTitle">
 
+        <div class="input-field col s12">
+            <select id="semester" name="semester">
+                <option value="" selected>Choose Semester</option>
+                <option value="Fall">Fall</option>
+                <option value="Spring">Spring</option>
+
+            </select>
+            <label> Semester:</label>
+        </div>
+
+        <label for="facultyID" id="fidLabel"> Faculty ID: </label>
+        <input id="facultyId" name="facultyId" type="text">
+        <input type="file" id="myFile" name="myFile" accept="applications/pdf">
+        <br>
+        <input type="button" value="Upload" onclick="uploadFile()">
+
+    </form>
+</div>
 Edit here
-
+<div id="deleteTest">
+    <button id="deleteButton" onclick="deleteCourse('12')">Delete</button>
+</div>
   
 </div>
+<!--  Add viewing here-->
+<table id="course_outlines" name="course_outlines" border="1px" >
 
+  <tr class="theaders" id="theaders" name="theaders" style="background-color:black;color:white;"> 
+  <td> <b>Course ID<b> </td>
+    <td><b> Course Name<b></td>
+    <td> <b>Course Department<b></td>
+    
+  </tr>
 
+</table>
+<!--end of view  -->
 <footer class="page-footer blue lighten-4">
     <div class="row">
       <div class="col l6 s12" style=" float:left;">
@@ -161,8 +196,10 @@ Edit here
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
-<script type="text/javascript">
+ <script type="text/javascript" src="js/my_js.js"></script>
+ <script type="text/javascript">
   $( document ).ready(function(){
+    courseOutlines();
     $(".button-collapse").sideNav();
     var orginalWidth = $(window).height();
     $('.slider').slider({full_width: true, height: (orginalWidth/2)});

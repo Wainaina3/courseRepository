@@ -1,5 +1,16 @@
 <?php
-
+include_once("adb.php");
+/**
+*
+ * Created by PhpStorm.
+ * User: David & Daniel
+ * Date: 13/11/2015
+ * Time: 19:48
+ */
+/*
+ * The class uses adb class to query the database
+ * It sends the queries which are run appropriately
+ */
 /**
 * This class contains functions that access the database for information
 * requested by the user.
@@ -11,7 +22,6 @@
 * @param      $id, $name are the parameters used in this class.
 */
 
-include_once("adb.php");
 class courseOutline extends adb
 {
 	/**
@@ -20,7 +30,7 @@ class courseOutline extends adb
 	* @return boolean
 	*/ 
 	public function getAllCourses(){
-		$result=$this->query("Select * from courseoutline");
+		$result = $this->query("select * from courseoutline");
 		if(!$result){
 			return false;
 		}
@@ -56,6 +66,67 @@ class courseOutline extends adb
 
 		return $this->fetch();
 	}
+
+    /**
+     * This function deletes a course outline from the database
+     * It makes use of the adb class
+     * @param string $courseId The id of the course outline to be deleted
+     * @return boolean returns true if the outline was deleted
+     */
+    function deleteCourseOutline($courseId)
+    {
+    	$sql="delete from courseoutline where courseId='$courseId'";
+
+    	return $this->query($sql);
+    }
+
+    /**
+    *This method takes the course id and get the course outline
+    *@param String $courseId
+    *@return boolean true if the query ran successfully and false otherwise.
+    */
+    function showOutline($courseId){
+    	$sql="select * from courseoutline where courseId='$courseId'";
+    	$result=$this->query($sql);
+    	return $result;
+    }
+
+    /**
+    *This method fetches the information in the scheduling table based on courseId
+    *@param String $courseId
+    *@return boolean true if the query ran successfully and false otherwise.
+    */
+    function showTable($courseId){
+    	$tablename="schedule".$courseId;
+    	$sql="select * from $tablename";
+    	$result=$this->query($sql);
+    	return $result;
+    }
+
+    /**
+    *this method takes in parameter for the updation of the course outline
+    *@param String, String, String, String, String, String, String, String, String $courseId,$title,$objective,$dept,$evaluate,$read,$goals,$semester,$fid
+    *
+    *@return boolean, true if successful and otherwise false
+    */
+    function  saveUpdatedCourse($courseId,$title,$objective,$dept,$evaluate,$read,$goals,$semester,$fid){
+    	$sql="update courseoutline set courseTitle='$title',courseDepartment='$dept',courseObjectives='$objective',courseEvaluate='$evaluate',readings='$read',courseSemester='$semester',facultyId='$fid' where courseId='$courseId'";
+    	$result=$this->query($sql);
+    	return $result;
+    }
+
+    /**
+    *This method updates the table for the course scheduling
+    *@param  String,String,int,String,String,String $courseId,$weekid,$week,$topic,$reading,$milestone
+    *@return boolean, true if successful and otherwise false
+    */
+    function saveUpdatedTable($courseId,$weekid,$week,$topic,$reading,$milestone){
+    	$tablename="schedule".$courseId;
+    	$sql="update $tablename set weeks='$week',topics='$topic',readings='$reading',milestones='$milestone' where weekid='$weekid'"; 
+    	$result=$this->query($sql);
+    	return $result;       
+    }
+
 }
 
 
