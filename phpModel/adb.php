@@ -14,8 +14,8 @@
 define("DB_HOST", 'localhost');
 define("DB_NAME", 'courserepo');
 define("DB_PORT", 3306);
-define("DB_USER","root");
-define("DB_PWORD","");
+define("DB_USER","dan");
+define("DB_PWORD","linux155");
 
 define("LOG_LEVEL_SEC",0);
 define("LOG_LEVEL_DB_FAIL",0);

@@ -7,7 +7,7 @@
  * Time: 19:47
  */
 
-include_once(dirname(__FILE__)."\..\phpModel\courseOutline.php");
+include_once(dirname(__FILE__)."/../phpModel/courseOutline.php");
 /**
  * This class communicates with the courseOutline class
  * it acts and interface between the model (database & courseOutline.php) and the view (user page)

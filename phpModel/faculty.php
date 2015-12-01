@@ -16,6 +16,50 @@ include_once("adb.php");
  */
 class faculty extends adb
 {
+	/**
+	* Edits a Faculty information
+	* @param 
+	* @return boolean
+	*/ 
+	public function editFaculty($facultyId,$facultyUsername,$facultyFirstName,$facultyLastName,$departmentId){
+		$sql="update faculty set facultyUsername='$facultyUsername',facultyFirstName='$facultyFirstName',facultyLastName='$facultyLastName',departmentId='$departmentId' where facultyId='$facultyId'";
+		$result=$this->query($sql);
+		if(!$result){
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	* Get faculty by id
+	* @param 
+	* @return $this
+	*/
+	public function getFacultyById($id){
+		$result=$this->query("select * from faculty where facultyId = '$id'");
+
+		if(!$result){
+			return false;
+		}
+
+		return $this->fetch();
+	}
+
+	/**
+	* Get all faculty 
+	* @param 
+	* @return $this
+	*/
+	public function getAllFaculty(){
+		$result=$this->query("select * from faculty");
+
+		if(!$result){
+			return false;
+		}
+
+		return true;
+	}
+
 /*This function adds a faculty to the database.
  *@param string $facultyId This is the id of a faculty member.
  * @param string $facultyUsername this the unique username of a faculty member.

@@ -12,3 +12,5 @@ class departmentControl extends department
 {
 
 }
+
+?>

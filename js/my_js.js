@@ -12,9 +12,9 @@
 
 	}
 	//activate select element in materialize
-	$(document).ready(function() {
-		$('select').material_select();
-	});
+	// $(document).ready(function() {
+	// 	$('select').material_select();
+	// });
 
 	function courseOutlines(){
 
@@ -418,7 +418,5 @@ function get_deptByName(){
 			}
 		});
 	}
-
-
 
 

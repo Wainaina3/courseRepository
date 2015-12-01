@@ -30,7 +30,7 @@ class courseOutline extends adb
 	* @return boolean
 	*/ 
 	public function getAllCourses(){
-		$result=$this->query("Select * from courseoutline");
+		$result = $this->query("select * from courseoutline");
 		if(!$result){
 			return false;
 		}
@@ -75,9 +75,9 @@ class courseOutline extends adb
      */
     function deleteCourseOutline($courseId)
     {
-        $sql="delete from courseoutline where courseId='$courseId'";
+    	$sql="delete from courseoutline where courseId='$courseId'";
 
-        return $this->query($sql);
+    	return $this->query($sql);
     }
 
     /**
@@ -86,9 +86,9 @@ class courseOutline extends adb
     *@return boolean true if the query ran successfully and false otherwise.
     */
     function showOutline($courseId){
-        $sql="select * from courseoutline where courseId='$courseId'";
-        $result=$this->query($sql);
-        return $result;
+    	$sql="select * from courseoutline where courseId='$courseId'";
+    	$result=$this->query($sql);
+    	return $result;
     }
 
     /**
@@ -97,10 +97,10 @@ class courseOutline extends adb
     *@return boolean true if the query ran successfully and false otherwise.
     */
     function showTable($courseId){
-        $tablename="schedule".$courseId;
-        $sql="select * from $tablename";
-        $result=$this->query($sql);
-        return $result;
+    	$tablename="schedule".$courseId;
+    	$sql="select * from $tablename";
+    	$result=$this->query($sql);
+    	return $result;
     }
 
     /**
@@ -110,9 +110,9 @@ class courseOutline extends adb
     *@return boolean, true if successful and otherwise false
     */
     function  saveUpdatedCourse($courseId,$title,$objective,$dept,$evaluate,$read,$goals,$semester,$fid){
-        $sql="update courseoutline set courseTitle='$title',courseDepartment='$dept',courseObjectives='$objective',courseEvaluate='$evaluate',readings='$read',courseSemester='$semester',facultyId='$fid' where courseId='$courseId'";
-        $result=$this->query($sql);
-        return $result;
+    	$sql="update courseoutline set courseTitle='$title',courseDepartment='$dept',courseObjectives='$objective',courseEvaluate='$evaluate',readings='$read',courseSemester='$semester',facultyId='$fid' where courseId='$courseId'";
+    	$result=$this->query($sql);
+    	return $result;
     }
 
     /**
@@ -121,12 +121,13 @@ class courseOutline extends adb
     *@return boolean, true if successful and otherwise false
     */
     function saveUpdatedTable($courseId,$weekid,$week,$topic,$reading,$milestone){
-        $tablename="schedule".$courseId;
-        $sql="update $tablename set weeks='$week',topics='$topic',readings='$reading',milestones='$milestone' where weekid='$weekid'"; 
-        $result=$this->query($sql);
-        return $result;       
+    	$tablename="schedule".$courseId;
+    	$sql="update $tablename set weeks='$week',topics='$topic',readings='$reading',milestones='$milestone' where weekid='$weekid'"; 
+    	$result=$this->query($sql);
+    	return $result;       
     }
 
-    }
+}
+
 
 ?>

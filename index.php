@@ -51,7 +51,7 @@
       <li class="divider"></li>
       <li><a href="#!" onclick="" class="blue-text">Logout</a></li>
     </ul>
-    <ul id="courseout" class="dropdown-content ">
+    <ul id="courseout" class="dropdown-content">
       <li><a href="#" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="courseview.php" class="blue-text">View</a></li>
@@ -67,8 +67,8 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down" >
           <li><a href="home.php" class="blue-text">Home</a></li>
-          <li><a href="job_ads.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
-          <li><a href="events.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
           <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
@@ -94,7 +94,7 @@
         <div class="row user" >
          <div class="col s7 m7" id="uname">
           <span class="blue-text " style="float:left; font-size:80%; ">
-           <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+           <?php// echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
          </span>
        </div>
        <div class="col s5 m5" >
@@ -151,8 +151,6 @@
 </div>
 
 <div class="row" id="userform">
-
-Content here
 
 <div id="uploading">
     <form id="fileUpload" method="post" enctype="multipart/form-data">

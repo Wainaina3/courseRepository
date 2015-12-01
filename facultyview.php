@@ -13,35 +13,35 @@
   <script type="text/javascript">
   function getCourseData(){
     $.get( 
-     "phpController/courseOutlineControl.php", {cmd: 7},
+     "phpController/facultyControl.php", {cmd: 4},
      function(data) {
       for (var i=0; i<data.outlines.length; i++) {
         var row = stage.insertRow();  
 
         var cell = row.insertCell();
-        cell.innerHTML= data.outlines[i]["courseId"];
+        cell.innerHTML= data.outlines[i]["facultyId"];
 
         var cell = row.insertCell();
-        cell.innerHTML= data.outlines[i]["courseTitle"];
+        cell.innerHTML= data.outlines[i]["facultyUsername"];
 
         var cell = row.insertCell();
-        cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.outlines[i]["courseId"]+")'>Details</a></li>";
+        cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.outlines[i]["facultyId"]+")'>Details</a></li>";
 
         var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=update_job_ad.php?jid="+data.outlines[i]["courseId"]+">Update</a></li>";
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=update_job_ad.php?jid="+data.outlines[i]["facultyId"]+">Update</a></li>";
 
         var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.outlines[i]["courseId"]+") '>Delete</a></li>";
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.outlines[i]["facultyId"]+") '>Delete</a></li>";
       }
     },"json");
   }
 
   function modal(id){
     $.get( 
-     "phpController/courseOutlineControl.php", {cmd: 6,courseId:id},
+     "phpController/facultyControl.php", {cmd: 2,fid:id},
      function(data) {
       // console.log("here " +data.outlines["courseId"]);
-      document.getElementById('modhed').innerHTML = data.outlines[0]["courseTitle"];
+      document.getElementById('modhed').innerHTML = data.outlines[0]["facultyUsername"];
       document.getElementById('moddet').innerHTML = "Objectives: "+data.outlines[0]["courseObjectives"];
     },"json");
     $('#modal1').openModal();          
@@ -134,12 +134,12 @@
 
 <div class="row" id="userform">
   <div class="col l4">&nbsp;</div>
-  <div class="col s12 m6 l4" align="center"><h4>List of Courseoutlines</h4></div>
+  <div class="col s12 m6 l4" align="center"><h4>List of Faculties</h4></div>
   <table class="bordered centered highlight">
     <thead>
       <tr>
-        <th data-field="id">Course Id</th>
-        <th data-field="name">Course Title</th>
+        <th data-field="id">Faculty Id</th>
+        <th data-field="name">Faculty Username</th>
       </tr>
     </thead>
 
