@@ -28,7 +28,7 @@
         cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.outlines[i]["courseId"]+")'>Details</a></li>";
 
         var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=update_job_ad.php?jid="+data.outlines[i]["courseId"]+">Update</a></li>";
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=updateCourse.php?upid="+data.outlines[i]["courseId"]+">Update</a></li>";
 
         var cell = row.insertCell();
         cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.outlines[i]["courseId"]+") '>Delete</a></li>";

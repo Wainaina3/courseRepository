@@ -18,7 +18,7 @@
 
 	function courseOutlines(){
 
-		var results=sendRequest("manipulation.php?cmd=2");
+		var results=sendRequest("courseOutlineControl.php?cmd=7");
 		var tbl= document.getElementById("course_outlines");
 
 		if(results.result!=0){		
@@ -44,7 +44,29 @@
 		}
 	}
 
-	
+	function displayCourse(){
+		
+		var c_id=document.getElementById("space").value;
+		alert(c_id);
+		var conRow=sendRequest("phpController/courseOutlineControl.php?cmd=1&courseId="+c_id);
+		var table=sendRequest("phpController/courseOutlineControl.php?cmd=4&courseId="+c_id);
+		if(conRow.result==1){
+			var courseCon=conRow.Outline;
+			var taCon=table.schedule;
+			var conHTML="";
+			for(var i=0;i<courseCon.length;i++){
+				conHTML+='<b>Course ID</b>:<input type="text" length="30" name="cid" id="cid" value='+courseCon[i]['courseId']+' readonly><br><b>Course Title</b>:<input type="text" length="30" name="cid" id="cid" value='+courseCon[i]['courseTitle']+'><br><b>Course Department</b>:<input type="text" length="30" name="cid" id="cid" value='+courseCon[i]['courseDepartment']+'><b>Course Objective</b><br><textArea>'+courseCon[i]['courseObjectives']+'</textArea><div><b>Course Description</b></div><br><textArea>'+courseCon[i]['courseDescription']+'</textArea><br><b>Course Learning Goals</b>:<textArea>'+courseCon[i]['learninggoals']+'</textArea><br><b>Course Semester</b>:<input type="text" length="30" name="cid" id="cid" value='+courseCon[i]['courseSemester']+'><br>';
+				conHTML+='<div class="headers" id="scheduler" name="scheduler"> <b>COURSE SCHEDULER</b><table id="schedule" name="schedule" border="1" width="50%"" align="center"><div id="schedule_header" name="schedule_header"> <thead id="table_headers" name="table_headers" width="50%"><th><b>Weeks</b></th><th><b>Topics</b></th><th><b>Readings</b></th><th><b>Milestones</b></th></thead></div><tbody id="thetab">';
+				for(var j=0;j<taCon.length;j++){
+					conHTML+='<tr  align="center" contenteditable="true"><td>'+taCon[j]['weeks']+'</td><td>'+taCon[j]['topics']+'</td><td>'+taCon[j]['readings']+'</td><td>'+taCon[j]['milestones']+'</td></tr></tbody></table></div><br>';
+				}
+			}
+			document.getElementById('contentShow').innerHTML=conHTML;
+			return;
+		}
+		alert(conRow.message);
+		return;
+	}
 	
 
 	// function courseOutlines(){

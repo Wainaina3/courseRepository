@@ -2,8 +2,8 @@
 
 /**
  * Created by PhpStorm.
- * User: David
- * Date: 13/11/2015
+ * User: David & Daniel
+ * Date: 13/11/2015, 24/11/2015
  * Time: 19:47
  */
 /*
@@ -12,8 +12,8 @@
  * The functions to be called are determined by the command sent from the javascript request.
  */
 
-include_once(dirname(__FILE__)."\\..\\phpModel\\faculty.php");
 
+include_once(dirname(__FILE__)."\\..\\phpModel\\faculty.php");
 /*
  * This class is used to interface between the faculty model class and the view.
  * Data from the view are fetched in this class and processed to be sent to the faculty model.
@@ -22,7 +22,7 @@ include_once(dirname(__FILE__)."\\..\\phpModel\\faculty.php");
  */
 class facultyControl extends faculty
 {
-    /*
+    /**
      * This function gets data from the add faculty Form and sends them to the model.
      * It requests the $facultyId, $facultyUsername, $facultyFirstName, $facultyLastName and $departmentId
      * The values of those add faculty form are then sent to the model by calling addFaculty method and feeding it the parameters
@@ -45,12 +45,18 @@ class facultyControl extends faculty
 
     }
 
+
     function editFacultyById()
     {
 
     	$fid = $_REQUEST['fid'];
+        $funame = $_REQUEST['uname'];
+        $ffname = $_REQUEST['fname'];
+        $flname = $_REQUEST['lname'];
+        $fdid = $_REQUEST['did'];
+
     	$obj = new faculty();
-    	if(!$obj->editFaculty($fid)){
+    	if(!$obj->editFaculty($fid,$funame,$ffname,$flname,$fdid)){
     		echo '{"result":0, "message":"No available course outlines"}';
     		return;
     	}
@@ -58,24 +64,6 @@ class facultyControl extends faculty
 
     }
 
-    function getAllFaculty()
-    {
-    	$obj = new faculty();
-    	if(!$obj->getAllFaculty()){
-    		echo '{"result":0, "message":"No available course outlines"}';
-    		return;
-    	}
-    	$row=$obj->fetch();
-    	echo '{"result":1,"outlines":[';
-    	while($row){
-    		echo json_encode($row);
-    		$row=$obj->fetch();
-    		if($row){
-    			echo ",";
-    		}
-    	}
-    	echo "]}";
-    }
 
     function getFacultyById()
     {
@@ -90,6 +78,56 @@ class facultyControl extends faculty
     	echo '{"result":1,"outlines":[';
     	echo json_encode($obj->getFacultyById($fid));
     	echo "]}";
+
+}
+    
+    /**
+    *Viewing all faculty members
+    */
+    function viewFaculty(){
+        $result=$this->viewFaculty();
+        if(!$result){
+            echo '{"result":0,"message":"Failed to query"}';
+            return;
+        }
+        else{
+            $row=$this->fetch();
+            echo '{"result":1,"faculty":[';
+            while($row){
+                echo json_encode($row);
+                if($row){
+                    echo ",";
+                }
+            }
+            echo "]}";
+        }
+    }
+
+
+    /**
+    *Viewing a specific kind of faculty member(s) based on a search text or number
+    */
+    function searchFacultyByWhat(){
+        if(isset($_REQUEST['search'])){
+            $search=$_REQUEST['search'];
+            $result=$this->searchAFaculty($search);
+            if(!$result){
+                echo '{"result":0,"message":"No such Faculty member exist in the database"}';
+            return;
+            }
+            else{
+              $row=$this->fetch();
+            echo '{"result":1,"faculty":[';
+            while($row){
+                echo json_encode($row);
+                if($row){
+                    echo ",";
+                }
+            }
+            echo "]}";
+        }
+    }
+
     }
 }
 /*
@@ -100,6 +138,7 @@ $facultyController = new facultyControl();
 if(isset($_REQUEST['cmd'])){
 
 	$cmd = $_REQUEST['cmd'];
+
 
 
 	switch($cmd){
@@ -113,10 +152,14 @@ if(isset($_REQUEST['cmd'])){
 		$facultyController->editFacultyById();
 		break;
 		case 4:
-		$facultyController->getAllFaculty();
+		$facultyController->viewFaculty();
 		break;
+        case 5:
+            $facultyController->searchFacultyByWhat();
+            break;
 		default:
 		echo '{"result":0, "message":"No request made"}';
 		break;
 	}
+
 }

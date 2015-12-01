@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: David
+ * User: David & daniel
  * Date: 13/11/2015
  * Time: 19:49
  * This file contains a model class for interfacing with the database and controller
@@ -16,6 +16,7 @@ include_once("adb.php");
  */
 class faculty extends adb
 {
+
 	/**
 	* Edits a Faculty information
 	* @param 
@@ -45,22 +46,10 @@ class faculty extends adb
 		return $this->fetch();
 	}
 
-	/**
-	* Get all faculty 
-	* @param 
-	* @return $this
-	*/
-	public function getAllFaculty(){
-		$result=$this->query("select * from faculty");
 
-		if(!$result){
-			return false;
-		}
+/**
+*This function adds a faculty to the database.
 
-		return true;
-	}
-
-/*This function adds a faculty to the database.
  *@param string $facultyId This is the id of a faculty member.
  * @param string $facultyUsername this the unique username of a faculty member.
  * @param string $facultyFirstName this the first name of a faculty member.
@@ -73,5 +62,37 @@ class faculty extends adb
         $sql="insert into faculty set facultyId='$facultyId',facultyUsername='$facultyUsername',facultyFirstName='$facultyFirstName',facultyLastName='$facultyLastName',departmentId='$departmentId'";
 
         return $this->query($sql);
+    }
+
+    /**
+    *This method fetches all faculty members
+    * @return boolean false if the query fails and otherwise 
+    *@return boolean true otherwise
+    */
+    function viewFaculty(){
+    	$sql="select * from faculty";
+    	$result=$this->query($sql);
+    	if(!$result){
+    		return false;
+    	}
+    	else{
+    		return true;
+    	}
+    }
+    /**
+    *This method queries for a specific faculty or similar faculty members based on name
+    *@param int $fid the id of the faculty
+    *@param String $fname this takes either first or last name of the faculty
+    *@return Object faculty
+    */
+    function searchAFaculty($search){
+    	$sql="select * from faculty where facultyLastName like '%$search%' or facultyFirstName like 'search%' or facultyId='$search'";
+    	$result=$this->query($sql);
+    	if(!$result){
+    		return false;
+    	}
+    	else{
+    		return true;
+    	}
     }
 }

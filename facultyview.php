@@ -11,33 +11,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
   <script type="text/javascript">
-  function getCourseData(){
-    $.get( 
+  function getFacultyData(){
+    $.get(
      "phpController/facultyControl.php", {cmd: 4},
+
      function(data) {
-      for (var i=0; i<data.outlines.length; i++) {
-        var row = stage.insertRow();  
+      for (var i=0; i<data.faculty.length; i++) {
+        var row = stage1.insertRow();  
 
         var cell = row.insertCell();
-        cell.innerHTML= data.outlines[i]["facultyId"];
+        cell.innerHTML= data.faculty[i]["facultyId"];
 
         var cell = row.insertCell();
-        cell.innerHTML= data.outlines[i]["facultyUsername"];
+        cell.innerHTML= data.faculty[i]["facultyFirstName"];
 
         var cell = row.insertCell();
-        cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.outlines[i]["facultyId"]+")'>Details</a></li>";
+        cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.faculty[i]["facultyId"]+")'>Details</a></li>";
 
         var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=update_job_ad.php?jid="+data.outlines[i]["facultyId"]+">Update</a></li>";
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=updateCourse.php?upid="+data.faculty[i]["facultyId"]+">Update</a></li>";
 
         var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.outlines[i]["facultyId"]+") '>Delete</a></li>";
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.faculty[i]["facultyId"]+") '>Delete</a></li>";
       }
     },"json");
   }
 
   function modal(id){
-    $.get( 
+    $.get(
      "phpController/facultyControl.php", {cmd: 2,fid:id},
      function(data) {
       // console.log("here " +data.outlines["courseId"]);
@@ -81,16 +82,19 @@
         <a href="#!" class="brand-logo"><img src="images/25.png" width="80px" height="50px"></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down" >
-          <li><a href="home.php" class="blue-text">Home</a></li>
-          <li><a href="job_ads.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
-          <li><a href="events.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
-           <li><a href="events.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="faculty">Faculty</a></li>
+          <li><a href="" class="blue-text">Home</a></li>
+          <li><a href="" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
+          <li><a href="" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
+           <li><a href="" class="blue-text dropdown-button" data-beloworigin="true" data-activates="faculty">Faculty</a></li>
           <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
               <span class="blue-text" style="float:right; padding-left:25%; " >
                 <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
               </span>
+          <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
+            <div class="row user" >
+             <div class="col s5 truncate" style="padding:0;">
             </div>
             <div class="col s1">&nbsp;</div>
             <div class="col s5 ">
@@ -136,14 +140,17 @@
   <div class="col l4">&nbsp;</div>
   <div class="col s12 m6 l4" align="center"><h4>List of Faculties</h4></div>
   <table class="bordered centered highlight">
+
+  <div class="col s12 m6 l4" align="center"><h4>List of Faculty Members</h4></div>
+  <table class="bordered centered highlight">
     <thead>
       <tr>
-        <th data-field="id">Faculty Id</th>
-        <th data-field="name">Faculty Username</th>
+        <th data-field="id">Faculty ID</th>
+        <th data-field="name">Faculty Name</th>
       </tr>
     </thead>
 
-    <tbody id="stage">
+    <tbody id="stage1">
 
     </tbody>
   </table>
@@ -201,7 +208,7 @@
 <script type="text/javascript" src="js/materialize.js"></script>
 <script type="text/javascript">
   $( document ).ready(function(){
-   getCourseData();
+      getFacultyData();
    $('.modal-trigger').leanModal();
    $(".button-collapse").sideNav();
 

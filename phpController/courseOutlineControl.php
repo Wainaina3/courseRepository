@@ -86,13 +86,34 @@ function deleteCourse()
         echo '{"result":1,"Outline":[';
         while($row){
             echo json_encode($row);
+            $row=$this->fetch();
             if($row){
                 echo ",";
             }
-            $row=$this->fetch();
+            
         }
         echo "]}";
     }
+
+    function getCourseOutlines(){
+    $result=$this->getAllCourses();
+    if(!$result){
+        echo '{"result":0, "message":"No available course outlines"}';
+        return;
+    }
+    $row=$obj->fetch();
+    echo '{"result":1,"outlines":[';
+    while($row){
+        echo json_encode($row);
+        $row=$obj->fetch();
+        if($row){
+            echo ",";
+        }
+    }
+    echo "]}";
+
+
+ }
 
     /**
     *Displays the schedule table of the course outline where the user can modify either the week something is due or otherwise.
@@ -112,10 +133,10 @@ function deleteCourse()
         echo '{"result":1,"schedule":[';
         while($row){
             echo json_encode($row);
+            $row=$this->fetch();
             if($row){
                 echo ",";
             }
-            $row=$this->fetch();
         }
         echo "]}";
     }
