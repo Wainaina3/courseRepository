@@ -51,13 +51,13 @@
       <li class="divider"></li>
       <li><a href="#!" onclick="" class="blue-text">Logout</a></li>
     </ul>
-    <ul id="courseout" class="dropdown-content ">
+    <ul id="courseout" class="dropdown-content">
       <li><a href="#" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
-      <li><a href="#modal1" class="blue-text waves-effect waves-light modal-trigger">Add</a></li>
+      <li><a href="#" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="#" class="blue-text">View</a></li>
     </ul>
@@ -67,8 +67,8 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down" >
           <li><a href="home.php" class="blue-text">Home</a></li>
-          <li><a href="job_ads.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
-          <li><a href="events.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
           <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
@@ -94,7 +94,7 @@
         <div class="row user" >
          <div class="col s7 m7" id="uname">
           <span class="blue-text " style="float:left; font-size:80%; ">
-           <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+           <?php// echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
          </span>
        </div>
        <div class="col s5 m5" >
@@ -116,43 +116,7 @@
 </nav>
 </div>
 
-<div id="modal1" class="modal">
-
-  <div class="modal-content">
-    <h4> Add Faculty Member</h4>
-    <form id="addFaculty" method="POST" enctype="multipart/form-data">
-        <label for="facultyId">Faculty ID:</label>
-        <input type="text" id="facultyId" name="facultyId">
-        <label for="facultyUsername">Faculty Username:</label>
-        <input type="text" id="facultyUsername" name="facultyUsername">
-        <label for="facultyFirstName"> First Name:</label>
-        <input type="text" id="facultyFirstName" name="facultyFirstName">
-        <label for="facultyLastName"> Last Name:</label>
-        <input type="text" id="facultyLastName" name="facultyLastName">
-
-         <div class="input-field col s12">
-            <select id="departmentId" name="departmentId">
-            <option value="" selected>Choose Department</option>
-            <option value="CS"> CS</option>
-            <option value="BA"> BA</option>
-            <option value="Eng">Eng</option>
-            <option value="Arts">Arts</option>
-
-            </select>
-            <label> DepartmentID</label>
-        </div>
-
-    </form>
-  </div>
-  <div class="modal-footer">
-     <a href="#!" onclick="addFaculty()" class=" btn modal-action modal-close waves-effect waves-green btn-flat">Save Faculty</a>
-  </div>
-
-</div>
-
 <div class="row" id="userform">
-
-Content here
 
 <div id="uploading">
     <form id="fileUpload" method="post" enctype="multipart/form-data">
@@ -185,6 +149,18 @@ Edit here
 </div>
   
 </div>
+<!--  Add viewing here-->
+<table id="course_outlines" name="course_outlines" border="1px" >
+
+  <tr class="theaders" id="theaders" name="theaders" style="background-color:black;color:white;"> 
+  <td> <b>Course ID<b> </td>
+    <td><b> Course Name<b></td>
+    <td> <b>Course Department<b></td>
+    
+  </tr>
+
+</table>
+<!--end of view  -->
 <footer class="page-footer blue lighten-4">
     <div class="row">
       <div class="col l6 s12" style=" float:left;">
@@ -220,24 +196,13 @@ Edit here
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
- <script type="text/javascript" src="js/my_js.js"></script>
  <script type="text/javascript">
   $( document ).ready(function(){
-    //courseOutlines();
-
     $(".button-collapse").sideNav();
-    $(".modal-trigger").leanModal();
-
     var orginalWidth = $(window).height();
     $('.slider').slider({full_width: true, height: (orginalWidth/2)});
   });
-  // $(function() {
-  //   $(window).resize(function() {
-  //      var orginalWidth = $(window).height();
-  //    $('.slider').slider({height: (orginalWidth/2)});
-
-  //   });
-  // });
+  
 </script>
 </body>
 

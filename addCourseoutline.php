@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -301,9 +300,7 @@ Edit here
 
   //   });
   // });
-<script type="text/javascript">
 
-</script>
 </body>
 
 </html>
