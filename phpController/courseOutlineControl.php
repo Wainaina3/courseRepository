@@ -15,6 +15,26 @@ include_once(dirname(__FILE__)."/../phpModel/courseOutline.php");
  */
 class courseOutlineControl extends courseOutline
 {
+/*Akpene
+ *Adding a course outline
+ */
+public function addCourseControl(){
+	$courseTitle=$_REQUEST['courseTitle'];
+
+	// $requestAdd=$this->addCourse($course_name,$course_id,$course_objective,
+	// 		$course_readings,$course_description, $course_evaluation, $learning_goals,$courseDept)
+
+	// if($requestAdd){
+	// 	echo '{"results":0,"message":"success"}';
+	// }
+	// else{
+
+	// }
+	echo '{"results":0,"message":"Got your message","received":"$courseTitle"}';
+	//request all eements
+
+						
+}
 
 function getAllCourseOutline()
 {
@@ -101,11 +121,11 @@ function deleteCourse()
         echo '{"result":0, "message":"No available course outlines"}';
         return;
     }
-    $row=$obj->fetch();
+    $row=$this->fetch();
     echo '{"result":1,"outlines":[';
     while($row){
         echo json_encode($row);
-        $row=$obj->fetch();
+        $row=$this->fetch();
         if($row){
             echo ",";
         }

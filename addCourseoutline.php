@@ -74,6 +74,7 @@
              <div class="col s5 truncate" style="padding:0;">
               <span class="blue-text" style="float:right; padding-left:25%; " >
                <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+               <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
               </span>
             </div>
             <div class="col s1">&nbsp;</div>
@@ -95,6 +96,7 @@
          <div class="col s7 m7" id="uname">
           <span class="blue-text " style="float:left; font-size:80%; ">
            <?php// echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+           <?php // echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
          </span>
        </div>
        <div class="col s5 m5" >
@@ -150,7 +152,58 @@
 
 </div>
 
+
 <div class="row" id="userform">
+  <div id="myOutline">
+    <form id="courseOutline" method="POST" enctype="multipart/form-data">
+      <label for="courseTitle"> Course Title</label>
+      <input id="courseTitle" type="text">
+      <input type="button" value="submit" onclick="sendOutline()" >
+    </form>
+  </div>
+COntent here
+  <table>
+      <tr>
+      <td id="content">
+        <div id="divContent" class="courseOutline">
+
+          <form id="outline" class="outline" name="outline" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <div > <input type="hidden" id="tablerows" name="tablerows" ></div>
+            <div> <div class='headers'> Course Id </div><input type="text" length="30" name="courseId" id="course_id"> </div>
+            <div> <div class='headers' > Course Name </div> <input type="text" length="30" name="courseName" id="course_name"></div>
+            <div id='dept_selector' name='dept_select'><div class='headers'> Course Department</div>
+             </div>
+             <div class='headers'>
+             <select id="course_dept" name="courseDepartment" class="browser-default">
+              <option value='none'>-select department- </option>
+              <option value='cs'> Computer Science</option>
+              <option value='ba'> Business </option>
+              <option value='as'> Arts and Sciences</option>
+              <option value='eng'> Engineering</option>
+            </select>
+          </div>
+
+            <p><div> <div class='headers'> Course Objectives </div><textarea class='css' col="10" row="20" id="course_objective" name="courseObjective"></textarea></div>
+            </p>
+            <p><div> <div class='headers'> Course Description </div> <textarea class='css' col="10" row="20" id="course_description" name="courseDescription"></textarea></div>
+            </p>
+            <div> <div class='headers'> Learning Goals </div> <textarea class='css' col="20" row="10" id="learning_goals" name="learningGoals"></textarea></div>
+      
+              </p>
+              <p>
+                <div> <div class='headers'> Course Evaluations </div> <textarea class='css' col="10" row="10" id="course_evaluations" name="courseEvaluation"></textarea></div>
+              </p>
+              <p>
+                <div> <div class='headers'> Course Readings </div> <textarea class='css' col="10" row="10" id="course_readings" name="courseReadings"></textarea></div>
+              </p>
+              <div> <input type="submit" value="Save"></div>
+            </form>
+            
+          </div>
+        </td>
+      </tr>
+
+    </table>
 
 <div id="uploading">
     <form id="fileUpload" method="post" enctype="multipart/form-data">
@@ -199,7 +252,7 @@ Edit here
     <div class="row">
       <div class="col l6 s12" style=" float:left;">
         <h5 class="black-text">Contact Us</h5>
-        <p class="black-text text-lighten-4">Softeware Engineering<br>
+        <p class="black-text text-lighten-4">Software Engineering<br>
           Ashesi University<br>
           Berekusu<br>
         </p>
@@ -248,6 +301,8 @@ Edit here
 
   //   });
   // });
+<script type="text/javascript">
+
 </script>
 </body>
 
