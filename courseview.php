@@ -6,46 +6,46 @@
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
   <link type="text/css" rel="stylesheet" href="css/style.css"/>
-  <script type="text/javascript" src="js/my_js.js"></script>
+  
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
   <script type="text/javascript">
-  function getCourseData(){
-    $.get( 
-     "phpController/courseOutlineControl.php", {cmd: 7},
-     function(data) {
-      for (var i=0; i<data.outlines.length; i++) {
-        var row = stage.insertRow();  
+  // function getCourseData(){
+  //   $.get( 
+  //    "phpController/courseOutlineControl.php", {cmd: 7},
+  //    function(data) {
+  //     for (var i=0; i<data.outlines.length; i++) {
+  //       var row = stage.insertRow();  
 
-        var cell = row.insertCell();
-        cell.innerHTML= data.outlines[i]["courseId"];
+  //       var cell = row.insertCell();
+  //       cell.innerHTML= data.outlines[i]["courseId"];
 
-        var cell = row.insertCell();
-        cell.innerHTML= data.outlines[i]["courseTitle"];
+  //       var cell = row.insertCell();
+  //       cell.innerHTML= data.outlines[i]["courseTitle"];
 
-        var cell = row.insertCell();
-        cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.outlines[i]["courseId"]+")'>Details</a></li>";
+  //       var cell = row.insertCell();
+  //       cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.outlines[i]["courseId"]+")'>Details</a></li>";
 
-        var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=updateCourse.php?upid="+data.outlines[i]["courseId"]+">Update</a></li>";
+  //       var cell = row.insertCell();
+  //       cell.innerHTML= "<li style='list-style-type:none;'><a href=updateCourse.php?upid="+data.outlines[i]["courseId"]+">Update</a></li>";
 
-        var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.outlines[i]["courseId"]+") '>Delete</a></li>";
-      }
-    },"json");
-  }
+  //       var cell = row.insertCell();
+  //       cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.outlines[i]["courseId"]+") '>Delete</a></li>";
+  //     }
+  //   },"json");
+  // }
 
-  function modal(id){
-    $.get( 
-     "phpController/courseOutlineControl.php", {cmd: 6,courseId:id},
-     function(data) {
-      // console.log("here " +data.outlines["courseId"]);
-      document.getElementById('modhed').innerHTML = data.outlines[0]["courseTitle"];
-      document.getElementById('moddet').innerHTML = "Objectives: "+data.outlines[0]["courseObjectives"];
-    },"json");
-    $('#modal1').openModal();          
-  }
+  // function modal(id){
+  //   $.get( 
+  //    "phpController/courseOutlineControl.php", {cmd: 6,courseId:id},
+  //    function(data) {
+  //     // console.log("here " +data.outlines["courseId"]);
+  //     document.getElementById('modhed').innerHTML = data.outlines[0]["courseTitle"];
+  //     document.getElementById('moddet').innerHTML = "Objectives: "+data.outlines[0]["courseObjectives"];
+  //   },"json");
+  //   $('#modal1').openModal();          
+  // }
 
 </script>
 
@@ -54,7 +54,7 @@
 <body class="#bbdefb blue lighten-4" >
  <div class="container z-depth-5"  id="indexcon">
    <div class="navbar-fixed" >
-     <ul id="user" class="dropdown-content ">
+    <!--  <ul id="user" class="dropdown-content ">
       <li><a href="#" class="blue-text">My Profile</a></li>
       <li class="divider"></li>
       <li><a href="#" class="blue-text">Activities</a></li>
@@ -62,34 +62,40 @@
       <li><a href="#!" onclick="" class="blue-text">Logout</a></li>
     </ul>
     <ul id="courseout" class="dropdown-content ">
-      <li><a href="#" class="blue-text">Add</a></li>
+      <li><a href="addCourseoutline.php" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
-      <li><a href="#" class="blue-text">Add</a></li>
+      <li><a href="addDepartment.php" class="blue-text">Add</a></li>
       <li class="divider"></li>
-      <li><a href="#" class="blue-text">View</a></li>
+      <li><a href="deparmentview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="faculty" class="dropdown-content ">
-      <li><a href="#" class="blue-text">Add</a></li>
+      <li><a href="addFaculty.php" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="facultyview.php" class="blue-text">View</a></li>
+    </ul> -->
+    <ul id='dropdown1' class='dropdown-content'>
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">three</a></li>
     </ul>
     <nav>
       <div class="nav-wrapper" >
         <a href="#!" class="brand-logo"><img src="images/25.png" width="80px" height="50px"></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down" >
-          <li><a href="home.php" class="blue-text">Home</a></li>
-          <li><a href="job_ads.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
-          <li><a href="events.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
-           <li><a href="events.php" class="blue-text dropdown-button" data-beloworigin="true" data-activates="faculty">Faculty</a></li>
+          <li><a href="" class="blue-text">Home</a></li>
+          <li><a class='blue-text dropdown-button ' data-beloworigin="true" href='#' data-activates='dropdown1'>Drop Me!</a></li>
+          <li><a href="" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
+          <li><a href="" class="blue-text dropdown-button" data-beloworigin="true" data-activates="faculty">Faculty</a></li>
           <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
               <span class="blue-text" style="float:right; padding-left:25%; " >
-                <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+
               </span>
             </div>
             <div class="col s1">&nbsp;</div>
@@ -199,14 +205,15 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
+<!-- <script type="text/javascript" src="js/my_js.js"></script> -->
 <script type="text/javascript">
   $( document ).ready(function(){
-   getCourseData();
-   $('.modal-trigger').leanModal();
-   $(".button-collapse").sideNav();
+   // getCourseData();
+   // $('.modal-trigger').leanModal();
+   // $(".button-collapse").sideNav();
 
-   var orginalWidth = $(window).height();
-   $('.slider').slider({full_width: true, height: (orginalWidth/2)});
+   // var orginalWidth = $(window).height();
+   // $('.slider').slider({full_width: true, height: (orginalWidth/2)});
  });
   // $(function() {
   //   $(window).resize(function() {

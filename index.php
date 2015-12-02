@@ -43,7 +43,7 @@
 
 <body class="#bbdefb blue lighten-4">
  <div class="container z-depth-5"  id="indexcon">
-   <div class="navbar-fixed" >
+      <div class="navbar-fixed" >
      <ul id="user" class="dropdown-content ">
       <li><a href="#" class="blue-text">My Profile</a></li>
       <li class="divider"></li>
@@ -51,29 +51,35 @@
       <li class="divider"></li>
       <li><a href="#!" onclick="" class="blue-text">Logout</a></li>
     </ul>
-    <ul id="courseout" class="dropdown-content">
-      <li><a href="#" class="blue-text">Add</a></li>
+    <ul id="courseout" class="dropdown-content ">
+      <li><a href="addCourseoutline.php" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
-      <li><a href="#" class="blue-text">Add</a></li>
+      <li><a href="addDepartment.php" class="blue-text">Add</a></li>
       <li class="divider"></li>
-      <li><a href="#" class="blue-text">View</a></li>
+      <li><a href="deparmentview.php" class="blue-text">View</a></li>
+    </ul>
+    <ul id="faculty" class="dropdown-content ">
+      <li><a href="addFaculty.php" class="blue-text">Add</a></li>
+      <li class="divider"></li>
+      <li><a href="facultyview.php" class="blue-text">View</a></li>
     </ul>
     <nav>
       <div class="nav-wrapper" >
         <a href="#!" class="brand-logo"><img src="images/25.png" width="80px" height="50px"></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down" >
-          <li><a href="home.php" class="blue-text">Home</a></li>
-          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
-          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
+          <li><a href="" class="blue-text">Home</a></li>
+          <li><a href="" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
+          <li><a href="" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
+           <li><a href="" class="blue-text dropdown-button" data-beloworigin="true" data-activates="faculty">Faculty</a></li>
           <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
               <span class="blue-text" style="float:right; padding-left:25%; " >
-               <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+                <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
               </span>
             </div>
             <div class="col s1">&nbsp;</div>
@@ -94,7 +100,7 @@
         <div class="row user" >
          <div class="col s7 m7" id="uname">
           <span class="blue-text " style="float:left; font-size:80%; ">
-           <?php// echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+           <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
          </span>
        </div>
        <div class="col s5 m5" >
