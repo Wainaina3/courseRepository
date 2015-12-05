@@ -82,7 +82,13 @@
           <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
             <div class="row user" >
              <div class="col s5 truncate" style="padding:0;">
+<<<<<<< HEAD
              
+=======
+              <span class="blue-text" style="float:right; padding-left:25%; " >
+                <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+              </span>
+>>>>>>> 00cedc4a489ea7a9bf08e0b8924b722c39e87904
             </div>
             <div class="col s1">&nbsp;</div>
             <div class="col s5 ">

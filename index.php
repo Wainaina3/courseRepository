@@ -94,7 +94,7 @@
         <div class="row user" >
          <div class="col s7 m7" id="uname">
           <span class="blue-text " style="float:left; font-size:80%; ">
-           <?php echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+           <?php// echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
          </span>
        </div>
        <div class="col s5 m5" >
@@ -117,7 +117,6 @@
 </div>
 
 <div class="row" id="userform">
-Content here
 
 <div id="uploading">
     <form id="fileUpload" method="post" enctype="multipart/form-data">

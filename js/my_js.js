@@ -397,6 +397,8 @@ function get_deptByName(){
 			url: "phpController/uploadControl.php?cmd=1",
 			type: "POST",
 			data: fd,
+<<<<<<< HEAD
+=======
 			dataType: 'json',
 			contentType: false,
 			processData:false,
@@ -426,6 +428,7 @@ function get_deptByName(){
 			url: "phpController/facultyControl.php?cmd=1",
 			type: "POST",
 			data: fd,
+>>>>>>> davidV1
 			//dataType: 'json',
 			contentType: false,
 			processData:false,
@@ -442,5 +445,9 @@ function get_deptByName(){
 	}
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> davidV1
 
 
