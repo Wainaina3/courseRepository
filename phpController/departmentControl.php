@@ -6,12 +6,25 @@
  * Date: 13/11/2015
  * Time: 19:48
  */
-include_once(dirname(__FILE__)."\..\phpModel\department.php");
+include_once(dirname(__FILE__)."/../phpModel/department.php");//For linux
 
 class departmentControl extends department
 {
 
-}
+	function deleteDeparment()
+	{
+		$depid = $_REQUEST['depid'];
+
+		$obj = new department();
+		if(!$obj->deleteDepartment($depid)){
+			echo '{"result":0, "message":"No available course outlines"}';
+			return;
+		}
+		echo '{"result":1, "message":"Deletion successful"}';
+
+
+	}
+
 
 
 /*
@@ -34,13 +47,15 @@ if(isset($_REQUEST['cmd'])){
 		break;
 		case 3:
 		// Delete
+		$departmentControl->deleteDeparment();
 		break;
 		case 4:
 		//Get all
 		break;
-       
+
 		default:
 		echo '{"result":0, "message":"No request made"}';
 		break;
 	}
+}
 ?>

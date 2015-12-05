@@ -49,7 +49,6 @@ class faculty extends adb
 
 /**
 *This function adds a faculty to the database.
-
  *@param string $facultyId This is the id of a faculty member.
  * @param string $facultyUsername this the unique username of a faculty member.
  * @param string $facultyFirstName this the first name of a faculty member.

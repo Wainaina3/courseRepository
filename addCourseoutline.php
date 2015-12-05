@@ -220,9 +220,6 @@
   </form>
 
 </div>
-<ul>
-  <li class="divider">OR</li>
-</ul>
 <div id="uploading">
   <form id="fileUpload" method="post" enctype="multipart/form-data">
     <div class="input-field col s6">

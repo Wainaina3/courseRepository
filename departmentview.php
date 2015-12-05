@@ -11,56 +11,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
   <script type="text/javascript">
-    function getCourseData(){
-      $.get( 
-       "phpController/courseOutlineControl.php", {cmd: 4},
-       function(data) {
-        for (var i=0; i<data.outlines.length; i++) {
-          var row = stage.insertRow();  
+    // function getDepartmentData(){
+    //   $.get( 
+    //    "phpController/departmentControl.php", {cmd: 4},
+    //    function(data) {
+    //     for (var i=0; i<data.department.length; i++) {
+    //       var row = stage.insertRow();  
 
-          var cell = row.insertCell();
-          cell.innerHTML= data.outlines[i]["departmentId"];
+    //       var cell = row.insertCell();
+    //       cell.innerHTML= data.department[i]["departmentId"];
 
-          var cell = row.insertCell();
-          cell.innerHTML= data.outlines[i]["departmentName"];
+    //       var cell = row.insertCell();
+    //       cell.innerHTML= data.department[i]["departmentName"];
 
-          var cell = row.insertCell();
-          cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='detailmodal("+data.outlines[i]["departmentId"]+")'>Details</a></li>";
+    //       var cell = row.insertCell();
+    //       cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='detailmodal("+data.department[i]["departmentId"]+")'>Details</a></li>";
 
-          var cell = row.insertCell();
-          cell.innerHTML= "<li style='list-style-type:none;'><a href='#' onclick='upmodal("+data.outlines[i]["departmentId"]+")'>Update</a></li>";
+    //       var cell = row.insertCell();
+    //       cell.innerHTML= "<li style='list-style-type:none;'><a href='#' onclick='upmodal("+data.department[i]["departmentId"]+")'>Update</a></li>";
 
-          var cell = row.insertCell();
-          cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletedept("+data.outlines[i]["departmentId"]+") '>Delete</a></li>";
-        }
-      },"json");
-    }
+    //       var cell = row.insertCell();
+    //       cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deleteDepartment("+data.department[i]["departmentId"]+") '>Delete</a></li>";
+    //     }
+    //   },"json");
+    // }
 
-    function detailmodal(id){
-      $.get( 
-       "phpController/courseOutlineControl.php", {cmd: 6,depid:id},
-       function(data) {
-      // console.log("here " +data.outlines["courseId"]);
-      document.getElementById('modhed').innerHTML = "Department Name: "+data.outlines[0]["departmentName"];
-      document.getElementById('moddet').innerHTML = "Head of Department: "+data.outlines[0]["deparmentHOD"];
+
+    function deleteDepartment(bid){
+    $.get( 
+     "phpController/departmentControl.php", {cmd:3, depid:bid},
+     function(data) {
+      if(data['result']!=1){
+        alert(data['message']);                          
+      }else{
+        Materialize.toast(data['message'], 4000);     
+      }
+
     },"json");
-      $('#depdetail').openModal();          
+  }
+
+    function delrow(){
+      $("#stage tr").click(function() {
+        //change the background color to red before removing
+        $(this).css("background-color","#FF3700");
+
+        $(this).fadeOut(400, function(){
+          $(this).remove();
+        });
+      });
     }
+    // function detailmodal(id){
+    //   $.get( 
+    //    "phpController/courseOutlineControl.php", {cmd: 6,depid:id},
+    //    function(data) {
+    //   // console.log("here " +data.outlines["courseId"]);
+    //   document.getElementById('modhed').innerHTML = "Department Name: "+data.department[0]["departmentName"];
+    //   document.getElementById('moddet').innerHTML = "Head of Department: "+data.department[0]["deparmentHOD"];
+    // },"json");
+    //   $('#depdetail').openModal();          
+    // }
 
-    function upmodal(id){
-      $.get( 
-       "phpController/courseOutlineControl.php", {cmd: 6,depid:id},
-       function(data) {
-      // console.log("here " +data.outlines["courseId"]);
-      document.getElementById('updepartmentid').innerHTML = "Department Name: "+data.outlines[0]["departmentName"];
-      document.getElementById('updepartmentname').innerHTML = "Head of Department: "+data.outlines[0]["deparmentHOD"];
-    },"json");
-      $('#upDept').openModal();          
-    }
+    // function delmodal(id){
+    //   $.get( 
+    //    "phpController/departmentControl.php", {cmd: 6,depid:id},
+    //    function(data) {
+    //   // console.log("here " +data.outlines["courseId"]);
+    //   document.getElementById('updepartmentid').innerHTML = data.department[0]["departmentName"];
+    //   document.getElementById('updepartmentname').innerHTML = data.department[0]["deparmentHOD"];
+    // },"json");
+    //   $('#upDept').openModal();          
+    // }
 
 
 
-</script>
+  </script>
 
 </head>
 
@@ -180,48 +204,48 @@
     <div class="modal-content">
       <h4>Add Department</h4>
 
-    <div class="input-field col s12">
-      <input length="30" name="departmentid" id="departmentid" type="text" class="validate">
-      <label for="departmentid" >Department ID </label>
-    </div>
-    <div class="input-field col s12">
-      <input length="30" name="departmentname" id="departmentname" type="text" class="validate">
-      <label for="departmentname" id="departmentname">Department Name</label>
-    </div>
-    <div class="input-field col s12">
-      <input length="30" name="hod" id="hod" type="text" class="validate">
-      <label for="hod" id="hod">Head of Department</label>
+      <div class="input-field col s12">
+        <input length="30" name="departmentid" id="departmentid" type="text" class="validate">
+        <label for="departmentid" >Department ID </label>
       </div>
-  </div>
-   <div class="modal-footer">
+      <div class="input-field col s12">
+        <input length="30" name="departmentname" id="departmentname" type="text" class="validate">
+        <label for="departmentname" id="departmentname">Department Name</label>
+      </div>
+      <div class="input-field col s12">
+        <input length="30" name="hod" id="hod" type="text" class="validate">
+        <label for="hod" id="hod">Head of Department</label>
+      </div>
+    </div>
+    <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Back</a>
       <a href="#!" class="modal-action waves-effect waves-green btn-flat ">Save</a>
     </div>  
-</div>
+  </div>
 
   <!-- Modal Structure -->
   <div id="upDept" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Update Department</h4>
 
-    <div class="input-field col s12">
-      <input length="30" name="updepartmentid" id="updepartmentid" type="text" class="validate">
-      <label for="updepartmentid" >Department ID </label>
-    </div>
-    <div class="input-field col s12">
-      <input length="30" name="updepartmentname" id="updepartmentname" type="text" class="validate">
-      <label for="updepartmentname" >Department Name</label>
-    </div>
-    <div class="input-field col s12">
-      <input length="30" name="uphod" id="uphod" type="text" class="validate">
-      <label for="uphod" >Head of Department</label>
+      <div class="input-field col s12">
+        <input length="30" name="updepartmentid" id="updepartmentid" type="text" class="validate">
+        <label for="updepartmentid" >Department ID </label>
       </div>
-  </div>
-   <div class="modal-footer">
+      <div class="input-field col s12">
+        <input length="30" name="updepartmentname" id="updepartmentname" type="text" class="validate">
+        <label for="updepartmentname" >Department Name</label>
+      </div>
+      <div class="input-field col s12">
+        <input length="30" name="uphod" id="uphod" type="text" class="validate">
+        <label for="uphod" >Head of Department</label>
+      </div>
+    </div>
+    <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Back</a>
       <a href="#!" class="modal-action waves-effect waves-green btn-flat ">Update</a>
     </div>  
-</div>
+  </div>
 
 </div>
 
@@ -263,7 +287,7 @@
 <script type="text/javascript" src="js/materialize.js"></script>
 <script type="text/javascript">
   $( document ).ready(function(){
-   getCourseData();
+   getDepartmentData();
    $('.modal-trigger').leanModal();
    $(".button-collapse").sideNav();
 
