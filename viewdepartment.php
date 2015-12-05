@@ -41,7 +41,7 @@
 
 </head>
 
-<body class="#bbdefb blue lighten-4">
+<body class="#bbdefb blue lighten-4" onload="viewDepartment()">
  <div class="container z-depth-5"  id="indexcon">
    <div class="navbar-fixed" >
      <ul id="user" class="dropdown-content ">
@@ -121,7 +121,15 @@
 
 </div>
 <!--  Add viewing here-->
+<table id="departmentstable" name="departmentstable" border="1px">
 
+  <tr class="theaders" id="theaders" name="theaders" style="background-color:black;color:white;"> 
+    <td> <b>Department ID<b> </td>
+    <td><b> Department Name<b></td>
+    <td> <b>Head of Department<b></td>
+    
+  </tr>
+</table>
 <!--end of view  -->
 <footer class="page-footer blue lighten-4">
     <div class="row">
@@ -158,6 +166,7 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
+<script type="text/javascript" src="js/my_js.js"></script>  
  <script type="text/javascript">
   $( document ).ready(function(){
     $(".button-collapse").sideNav();

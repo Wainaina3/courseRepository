@@ -10,4 +10,11 @@ include_once("adb.php");
 class department extends adb
 {
 
+    function viewDepartmentsModel(){
+
+        $sql="select * from department";
+
+        return $this->query($sql);
+    }
+
 }

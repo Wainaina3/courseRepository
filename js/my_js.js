@@ -166,3 +166,26 @@ function sendOutline(){
 }
 
 
+function viewDepartment(){
+
+	var results=sendRequest("phpController/departmentControl.php?cmd=5");
+		var deptable= document.getElementById("departmentstable");
+
+		if(results.result!=0){		
+		for(i=0;i<results.departments.length;i++){
+			
+				deptablerows=deptable.rows.length;
+				row=deptable.insertRow(deptablerows);
+				deptid=row.insertCell(0);
+				deptname=row.insertCell(1);
+				depthod=row.insertCell(2);
+				
+				deptid.innerHTML=results.departments[i].departmentId;
+				deptname.innerHTML=results.departments[i].departmentName;
+				depthod.innerHTML=results.departments[i].deparmentHOD;
+								
+		
+			}
+		}
+
+}

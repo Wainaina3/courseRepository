@@ -11,6 +11,45 @@ include_once(dirname(__FILE__)."\..\phpModel\department.php");
 class departmentControl extends department
 {
 
+    function viewDepartmentsControl(){
+
+        if(!$this->viewDepartmentsModel()){
+            echo '{"result":0, "message":"No available course outlines"}';
+            return;
+        }
+        $row=$this->fetch();
+        echo '{"result":1,"departments":[';
+        while($row){
+            echo json_encode($row);
+            $row=$this->fetch();
+            if($row){
+                echo ",";
+            }
+        }
+        echo "]}";
+    }
+}
+
+
+$departmentcontrol = new departmentControl();
+
+if(isset($_REQUEST['cmd'])){
+    $cmd=$_REQUEST['cmd'];
+
+    switch($cmd){
+
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            $departmentcontrol->viewDepartmentsControl();
+            break;
+    }
 }
 
 ?>
