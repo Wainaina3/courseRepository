@@ -11,54 +11,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
   <script type="text/javascript">
-    function getCourseData(){
-      $.get( 
-       "phpController/courseOutlineControl.php", {cmd: 4},
-       function(data) {
-        for (var i=0; i<data.outlines.length; i++) {
-          var row = stage.insertRow();  
+    // function getCourseData(){
+    //   $.get( 
+    //    "phpController/courseOutlineControl.php", {cmd: 4},
+    //    function(data) {
+        // for (var i=0; i<data.outlines.length; i++) {
+        //   var row = stage.insertRow();  
 
-          var cell = row.insertCell();
-          cell.innerHTML= data.outlines[i]["departmentId"];
+        //   var cell = row.insertCell();
+        //   cell.innerHTML= data.outlines[i]["departmentId"];
 
-          var cell = row.insertCell();
-          cell.innerHTML= data.outlines[i]["departmentName"];
+        //   var cell = row.insertCell();
+        //   cell.innerHTML= data.outlines[i]["departmentName"];
 
-          var cell = row.insertCell();
-          cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='detailmodal("+data.outlines[i]["departmentId"]+")'>Details</a></li>";
+        //   var cell = row.insertCell();
+        //   cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='detailmodal("+data.outlines[i]["departmentId"]+")'>Details</a></li>";
 
-          var cell = row.insertCell();
-          cell.innerHTML= "<li style='list-style-type:none;'><a href='#' onclick='upmodal("+data.outlines[i]["departmentId"]+")'>Update</a></li>";
+        //   var cell = row.insertCell();
+        //   cell.innerHTML= "<li style='list-style-type:none;'><a href='#' onclick='upmodal("+data.outlines[i]["departmentId"]+")'>Update</a></li>";
 
-          var cell = row.insertCell();
-          cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletedept("+data.outlines[i]["departmentId"]+") '>Delete</a></li>";
-        }
-      },"json");
-    }
+        //   var cell = row.insertCell();
+        //   cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletedept("+data.outlines[i]["departmentId"]+") '>Delete</a></li>";
+        // }
+    //   },"json");
+    // }
 
-    function detailmodal(id){
-      $.get( 
-       "phpController/courseOutlineControl.php", {cmd: 6,depid:id},
-       function(data) {
-      // console.log("here " +data.outlines["courseId"]);
-      document.getElementById('modhed').innerHTML = "Department Name: "+data.outlines[0]["departmentName"];
-      document.getElementById('moddet').innerHTML = "Head of Department: "+data.outlines[0]["deparmentHOD"];
-    },"json");
-      $('#depdetail').openModal();          
-    }
+    // function detailmodal(id){
+    //   $.get( 
+    //    "phpController/courseOutlineControl.php", {cmd: 6,depid:id},
+    //    function(data) {
+    //   // console.log("here " +data.outlines["courseId"]);
+    //   document.getElementById('modhed').innerHTML = "Department Name: "+data.outlines[0]["departmentName"];
+    //   document.getElementById('moddet').innerHTML = "Head of Department: "+data.outlines[0]["deparmentHOD"];
+    // },"json");
+    //   $('#depdetail').openModal();          
+    // }
 
-    function upmodal(id){
-      $.get( 
-       "phpController/courseOutlineControl.php", {cmd: 6,depid:id},
-       function(data) {
-      // console.log("here " +data.outlines["courseId"]);
-      document.getElementById('updepartmentid').innerHTML = "Department Name: "+data.outlines[0]["departmentName"];
-      document.getElementById('updepartmentname').innerHTML = "Head of Department: "+data.outlines[0]["deparmentHOD"];
-    },"json");
-      $('#upDept').openModal();          
-    }
+    // function upmodal(id){
+    //   $.get( 
+    //    "phpController/courseOutlineControl.php", {cmd: 6,depid:id},
+    //    function(data) {
+    //   // console.log("here " +data.outlines["courseId"]);
+    //   document.getElementById('updepartmentid').innerHTML = "Department Name: "+data.outlines[0]["departmentName"];
+    //   document.getElementById('updepartmentname').innerHTML = "Head of Department: "+data.outlines[0]["deparmentHOD"];
+    // },"json");
+    //   $('#upDept').openModal();          
+    // }
 
 
+function test(){
+  alert("sdfa");
+}
 
 </script>
 
@@ -80,8 +83,6 @@
       <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
-      <li><a href="addDepartment.php" class="blue-text">Add</a></li>
-      <li class="divider"></li>
       <li><a href="departmentview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="faculty" class="dropdown-content ">
@@ -179,7 +180,7 @@
   <div id="addDept" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Add Department</h4>
-
+      <p><span id="dsr"></span></p>
     <div class="input-field col s12">
       <input length="30" name="departmentid" id="departmentid" type="text" class="validate">
       <label for="departmentid" >Department ID </label>
@@ -195,7 +196,7 @@
   </div>
    <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Back</a>
-      <a href="#!" class="modal-action waves-effect waves-green btn-flat ">Save</a>
+      <a href="#!" onclick="addDept()" class="modal-action waves-effect waves-green btn-flat ">Save</a>
     </div>  
 </div>
 
@@ -261,9 +262,10 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/materialize.js"></script>
+
 <script type="text/javascript">
   $( document ).ready(function(){
-   getCourseData();
+   // getCourseData();
    $('.modal-trigger').leanModal();
    $(".button-collapse").sideNav();
 

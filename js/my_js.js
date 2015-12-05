@@ -47,56 +47,7 @@
 	
 	
 
-	// function courseOutlines(){
-
-	// 	var results=sendRequest("manipulation.php?cmd=2");
-	// 	var tbl= document.getElementById("course_outlines");
-
-	// 	if(results.result!=0){		
-
-
-	// 		for(i=0;i<results.outlines.length;i++){
-	// 			if(results.outlines[i].course_dept=='cs'){
-	// 				cs=document.getElementById("csTable");
-	// 				csrow=cs.rows.length;
-	// 				row=cs.insertRow(csrow);
-	// 				cid=row.insertCell(0);
-	// 				cname=row.insertCell(1);
-	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";;
-	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
-
-	// 			}
-	// 			else if(results.outlines[i].course_dept=='as'){
-	// 				as=document.getElementById("asTable");
-	// 				asrow=as.rows.length;
-	// 				row=as.insertRow(asrow);
-	// 				cid=row.insertCell(0);
-	// 				cname=row.insertCell(1);
-	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
-	// 			}
-	// 			else if(results.outlines[i].course_dept=='ba'){
-	// 				ba=document.getElementById("baTable");
-	// 				barow=ba.rows.length;
-	// 				row=ba.insertRow(barow);
-	// 				cid=row.insertCell(0);
-	// 				cname=row.insertCell(1);
-	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
-
-	// 			}
-	// 			else if(results.outlines[i].course_dept='eng'){
-	// 				eng=document.getElementById("engTable");
-	// 				engrow=eng.rows.length;
-	// 				row=eng.insertRow(engrow);
-	// 				cid=row.insertCell(0);
-	// 				cname=row.insertCell(1);
-	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>"; 
-	// 			}
-	// 		}
-	// 	}
-	// }
+	
 	//validating empty fields
 	function check_empty () {
 		// body...
@@ -120,6 +71,51 @@
 			return true;
 		}
 	}
+
+	//controls the button with id addDept.
+// this button helps to add the department records
+$(function(){
+ $('#addD').click(function(e){
+ 	alert("hey")
+ 	addDept();
+ });
+});
+
+function addDept(){
+	alert("heelo");
+	var deptId=$('#departmentid').val();
+	var deptName=$('#departmentname').val();
+	var hodId=$('#hod').val();
+	//validating input
+	if(deptId==""){
+		alert("Need to Enter the Department's ID");
+		return;
+	}
+	else if(deptName==""){
+		alert("Need to Enter the Department's Name");
+		return;
+	}
+	else if(hodId==""){
+		alert("Need to Enter the HOD's ID");
+		return;
+	}
+	//if every detail is provided
+	else{
+		var obj=sendRequest("departmentControl.php?cmd=1");
+		if(obj.result==1){
+			//document.getElementById('dsr').innerHTML=obj.message;
+			alert(obj.message);
+			document.getElementById("departmentid").value="";
+			document.getElementById("departmentname").value="";
+			document.getElementById("hod").value="";
+			return;
+		}
+		else{
+			document.getElementById('dsr').innerHTML=obj.message;
+			return;
+		}
+	}
+}
 
 	//function to display popup
 	function div_show(){

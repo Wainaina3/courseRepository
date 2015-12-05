@@ -59,7 +59,7 @@
     <ul id="department" class="dropdown-content ">
       <li><a href="addDepartment.php" class="blue-text">Add</a></li>
       <li class="divider"></li>
-      <li><a href="deparmentview.php" class="blue-text">View</a></li>
+      <li><a href="departmentview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="faculty" class="dropdown-content ">
       <li><a href="addFaculty.php" class="blue-text">Add</a></li>
