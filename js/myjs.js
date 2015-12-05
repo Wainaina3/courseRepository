@@ -11,7 +11,6 @@ function sendOutline(){
 	var lgoals=$("#learningGoals").val();
 	var cdept=$("#courseDepartment").val();
 
-	alert(formData);
 	$.ajax({
 		url: "phpController/courseOutlineControl.php?cmd=1",
 		type: "POST",
@@ -20,11 +19,9 @@ function sendOutline(){
 		contentType: false,
 		processData: false,
 		success: function(data){
-
 			alert("data from server" + data.results + data.message + data.received);
 
-			alert("data from server" + data.received);
-		},
+			alert("data from server" + data.results + data.message + data.received);
 		error: function(data){
 			alert("error");
 		}
