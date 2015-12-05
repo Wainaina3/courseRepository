@@ -74,15 +74,14 @@
 
 	//controls the button with id addDept.
 // this button helps to add the department records
-$(function(){
- $('#addD').click(function(e){
- 	alert("hey")
- 	addDept();
- });
-});
+// $(function(){
+//  $('#addD').click(function(e){
+//  	alert("hey")
+//  	addDept();
+//  });
+// });
 
 function addDept(){
-	alert("heelo");
 	var deptId=$('#departmentid').val();
 	var deptName=$('#departmentname').val();
 	var hodId=$('#hod').val();
@@ -101,9 +100,9 @@ function addDept(){
 	}
 	//if every detail is provided
 	else{
-		var obj=sendRequest("departmentControl.php?cmd=1");
+		var obj=sendRequest(".\\phpController\\departmentControl.php?cmd=1&deptId="+deptId+"&deptName="+deptName+"&hodId="+hodId);
 		if(obj.result==1){
-			//document.getElementById('dsr').innerHTML=obj.message;
+			document.getElementById('dsr').innerHTML=obj.message;
 			alert(obj.message);
 			document.getElementById("departmentid").value="";
 			document.getElementById("departmentname").value="";
