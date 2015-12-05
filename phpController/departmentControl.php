@@ -10,12 +10,28 @@ include_once(dirname(__FILE__)."\..\phpModel\department.php");
 
 class departmentControl extends department
 {
-
+/**
+ * This functions get a department information edited from the user request
+ * It first checks whether the department id was set and only proceeds if it was set
+ * It then sends it to department to edit it
+ * @return json format message of success or failure. The failure result value is 0 while success result is 1
+ */
+function updateDepartment()
+{
+    if (!isset($_REQUEST['departmentId'])) {
+     echo '{"result":0}';
+        exit;
+ }
+ $department_id=$_REQUEST['departmentId'];
+ if  ($this->editDepartment($department_id)) {
+    echo '{"result":1,"message":"Department $department_id was edited from database"}';
+}
+}
 }
 
 
 /*
- * Creates an instance of facultyControl class
+ * Creates an instance of departmentControl class
  */
 $departmentControl = new departmentControl();
 //Checks whether there is a command sent to the this class
