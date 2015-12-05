@@ -130,6 +130,17 @@
     
   </tr>
 </table>
+
+<table id="departmentcourses" name="departmentcourses" border="1px">
+
+  <tr class="theaders" id="theaders" name="theaders" style="background-color:black;color:white;"> 
+    <td> <b>Coruse ID<b> </td>
+    <td><b> Course Name<b></td>
+    <td> <b>Faculty<b></td>
+    
+  </tr>
+</table>
+
 <!--end of view  -->
 <footer class="page-footer blue lighten-4">
     <div class="row">

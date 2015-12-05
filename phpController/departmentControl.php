@@ -14,7 +14,7 @@ class departmentControl extends department
     function viewDepartmentsControl(){
 
         if(!$this->viewDepartmentsModel()){
-            echo '{"result":0, "message":"No available course outlines"}';
+            echo '{"result":0, "message":"No available departments"}';
             return;
         }
         $row=$this->fetch();
@@ -27,6 +27,27 @@ class departmentControl extends department
             }
         }
         echo "]}";
+    }
+
+    function getDepartmentCoursesControl() {
+
+        $deptid=$_REQUEST['dept'];
+
+        if(!$this->getDepartmentCoursesModel($deptid)){
+            echo '{"result":0, "message":"No available coursed for this dept"}';
+            return;
+        }
+        $row=$this->fetch();
+        echo '{"result":1,"courses":[';
+        while($row){
+            echo json_encode($row);
+            $row=$this->fetch();
+            if($row){
+                echo ",";
+            }
+        }
+        echo "]}";
+
     }
 }
 
@@ -49,6 +70,8 @@ if(isset($_REQUEST['cmd'])){
         case 5:
             $departmentcontrol->viewDepartmentsControl();
             break;
+        case 6:
+           $departmentcontrol->getDepartmentCoursesControl();
     }
 }
 

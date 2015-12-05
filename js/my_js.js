@@ -180,7 +180,8 @@ function viewDepartment(){
 				deptname=row.insertCell(1);
 				depthod=row.insertCell(2);
 				
-				deptid.innerHTML=results.departments[i].departmentId;
+				deptid.innerHTML='<div onclick="viewDepartCourses('+results.departments[i].departmentId+')"><a href="">'+results.departments[i].departmentId+'</a> </div>';
+
 				deptname.innerHTML=results.departments[i].departmentName;
 				depthod.innerHTML=results.departments[i].deparmentHOD;
 								
@@ -188,4 +189,32 @@ function viewDepartment(){
 			}
 		}
 
+}
+
+function viewDepartCourses(dept){
+
+	var results=sendRequest("phpController/departmentControl.php?cmd=6&deptid="+dept);
+		var deptable= document.getElementById("departmentcourses");
+
+		if(results.result!=0){		
+		for(i=0;i<results.courses.length;i++){
+			
+				deptablerows=deptable.rows.length;
+				row=deptable.insertRow(deptablerows);
+				coursetid=row.insertCell(0);
+				coursename=row.insertCell(1);
+				coursefaculty=row.insertCell(2);
+				
+				deptid.innerHTML='<a href="">'+results.courses[i].courseId+'</a>';
+
+				deptname.innerHTML=results.courses[i].courseName;
+				depthod.innerHTML=results.courses[i].deparmentHOD;
+								
+		
+			}
+		}
+}
+
+function jimmy(v){
+alert("woiih" + v); 	 	
 }

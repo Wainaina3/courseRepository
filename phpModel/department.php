@@ -17,4 +17,12 @@ class department extends adb
         return $this->query($sql);
     }
 
+    function getDepartmentCoursesModel($deptid){
+
+        $sql="select * from department,courseoutline,faculty where department.departmentId=courseoutline.departmentId and departmentId='$deptid'";
+
+        return $this->query($sql);
+
+    }
+
 }
