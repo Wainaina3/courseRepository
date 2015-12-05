@@ -422,7 +422,7 @@ function get_deptByName(){
 
 function viewDepartment(){
 
-	var results=sendRequest("phpController/departmentControl.php?cmd=5");
+	var results=sendRequest("phpController/departmentControl.php?cmd=4");
 		var deptable= document.getElementById("departmentstable");
 
 		if(results.result!=0){		

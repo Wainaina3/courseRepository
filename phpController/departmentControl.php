@@ -51,31 +51,6 @@ class departmentControl extends department
     }
 }
 
-
-$departmentcontrol = new departmentControl();
-
-if(isset($_REQUEST['cmd'])){
-    $cmd=$_REQUEST['cmd'];
-
-    switch($cmd){
-
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 5:
-            $departmentcontrol->viewDepartmentsControl();
-            break;
-        case 6:
-           $departmentcontrol->getDepartmentCoursesControl();
-    }
-}
-
-
 /*
  * Creates an instance of facultyControl class
  */
@@ -98,11 +73,18 @@ if(isset($_REQUEST['cmd'])){
 		// Delete
 		break;
 		case 4:
-		//Get all
-		break;
+            $departmentControl->viewDepartmentsControl();
+            break;
+        case 5:
+           // $departmentcontrol->viewDepartmentsControl();
+            break;
+        case 6:
+           $departmentControl->getDepartmentCoursesControl();
        
 		default:
 		echo '{"result":0, "message":"No request made"}';
 		break;
 	}
+
+}
 ?>

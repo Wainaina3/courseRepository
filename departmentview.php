@@ -11,27 +11,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
   <script type="text/javascript">
-    function getCourseData(){
+    function getDepartmentData(){
       $.get( 
-       "phpController/courseOutlineControl.php", {cmd: 4},
+       "phpController/departmentControl.php", {cmd: 4},
        function(data) {
-        for (var i=0; i<data.outlines.length; i++) {
+        for (var i=0; i<data.departments.length; i++) {
           var row = stage.insertRow();  
 
           var cell = row.insertCell();
-          cell.innerHTML= data.outlines[i]["departmentId"];
+          cell.innerHTML= data.departments[i]["departmentId"];
 
           var cell = row.insertCell();
-          cell.innerHTML= data.outlines[i]["departmentName"];
+          cell.innerHTML= data.departments[i]["departmentName"];
 
           var cell = row.insertCell();
-          cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='detailmodal("+data.outlines[i]["departmentId"]+")'>Details</a></li>";
+          cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='detailmodal("+data.departments[i]["departmentId"]+")'>Details</a></li>";
 
           var cell = row.insertCell();
-          cell.innerHTML= "<li style='list-style-type:none;'><a href='#' onclick='upmodal("+data.outlines[i]["departmentId"]+")'>Update</a></li>";
+          cell.innerHTML= "<li style='list-style-type:none;'><a href='#' onclick='upmodal("+data.departments[i]["departmentId"]+")'>Update</a></li>";
 
           var cell = row.insertCell();
-          cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletedept("+data.outlines[i]["departmentId"]+") '>Delete</a></li>";
+          cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletedept("+data.departments[i]["departmentId"]+") '>Delete</a></li>";
         }
       },"json");
     }
@@ -224,8 +224,6 @@
 </div>
 
 </div>
-
-
 <footer class="page-footer blue lighten-4">
   <div class="row">
     <div class="col l6 s12" style=" float:left;">
@@ -263,7 +261,8 @@
 <script type="text/javascript" src="js/materialize.js"></script>
 <script type="text/javascript">
   $( document ).ready(function(){
-   getCourseData();
+   getDepartmentData();
+   viewDepartment();
    $('.modal-trigger').leanModal();
    $(".button-collapse").sideNav();
 
