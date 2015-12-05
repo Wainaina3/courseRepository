@@ -11,6 +11,12 @@ include_once(dirname(__FILE__)."\..\phpModel\department.php");
 class departmentControl extends department
 {
 
+/*
+*This function send a request to viewDepartmentsModel to
+*get all the departments
+*@return jsonObject
+*/
+
     function viewDepartmentsControl(){
 
         if(!$this->viewDepartmentsModel()){

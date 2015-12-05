@@ -9,7 +9,11 @@
 include_once("adb.php");
 class department extends adb
 {
-
+/*
+*Send a query to courserepo database
+*gets all the departments in the database
+*@return mysql dataset
+*/
     function viewDepartmentsModel(){
 
         $sql="select * from department";
