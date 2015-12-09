@@ -131,6 +131,19 @@ class facultyControl extends faculty
     }
 
     }
+
+    function deleteFacultyControl(){
+        $fid=$_REQUEST['facultyId'];
+
+        $delete=$this->deleteFacultyModel($fid);
+
+        if($delete){
+          echo '{"result":1,"message":"Faculty deleted succesfully"}';
+        }
+        else{
+            echo '{"result":0,"message":"Could not delete Faculty"}';
+        }
+    }
 }
 /*
  * Creates an instance of facultyControl class
@@ -145,19 +158,22 @@ if(isset($_REQUEST['cmd'])){
 
 	switch($cmd){
 		case 1:
-		$facultyController->addFacultyControl();
+		    $facultyController->addFacultyControl();
 		break;
 		case 2:
-		$facultyController->getFacultyById();
+		    $facultyController->getFacultyById();
 		break;
 		case 3:
-		$facultyController->editFacultyById();
+		    $facultyController->editFacultyById();
 		break;
 		case 4:
-		$facultyController->viewFaculty();
+            $facultyController->viewFaculty();
 		break;
         case 5:
             $facultyController->searchFacultyByWhat();
+            break;
+        case 6:
+            $facultyController->deleteFacultyControl();
             break;
 		default:
 		echo '{"result":0, "message":"No request made"}';

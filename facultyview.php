@@ -34,7 +34,7 @@
         cell.innerHTML= "<li style='list-style-type:none;'><a href=updateCourse.php?upid="+data.faculty[i]["facultyId"]+">Update</a></li>";
 
         var cell = row.insertCell();
-        cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletejob("+data.faculty[i]["facultyId"]+") '>Delete</a></li>";
+        cell.innerHTML= "<li style='list-style-type:none;'><a href=# onclick='delrow(); deletefaculty("+data.faculty[i]["facultyId"]+") '>Delete</a></li>";
       }
     },"json");
   }
@@ -48,6 +48,31 @@
       document.getElementById('moddet').innerHTML = "Objectives: "+data.outlines[0]["courseObjectives"];
     },"json");
     $('#modal1').openModal();          
+  }
+
+   function delrow(){
+      $("#stage1 tr").click(function() {
+        //change the background color to red before removing
+        $(this).css("background-color","#FF3700");
+
+        $(this).fadeOut(400, function(){
+          $(this).remove();
+        });
+      });
+    }
+
+     function deletefaculty(fid){ //change this to delete faculty
+    
+    $.get( 
+     "phpController/facultyControl.php", {cmd:6, facultyId:fid},
+     function(data) {
+      if(data['result']!=1){
+        alert(data['message']);                          
+      }else{
+        Materialize.toast(data['message'], 4000);     
+      }
+
+    },"json");
   }
 
 </script>
@@ -72,10 +97,10 @@
     <ul id="department" class="dropdown-content ">
       <li><a href="#" class="blue-text">Add</a></li>
       <li class="divider"></li>
-      <li><a href="#" class="blue-text">View</a></li>
+      <li><a href="departmentview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="faculty" class="dropdown-content ">
-      <li><a href="#" class="blue-text">Add</a></li>
+      <li><a href="addFaculty.php" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="facultyview.php" class="blue-text">View</a></li>
     </ul>
@@ -141,9 +166,6 @@
 <div class="row" id="userform">
   <div class="col l4">&nbsp;</div>
   <div class="col s12 m6 l4" align="center"><h4>List of Faculties</h4></div>
-  <table class="bordered centered highlight">
-
-  <div class="col s12 m6 l4" align="center"><h4>List of Faculty Members</h4></div>
   <table class="bordered centered highlight">
     <thead>
       <tr>

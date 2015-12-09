@@ -156,9 +156,9 @@
 
     </form>
   </div>
- <button class="btn waves-effect waves-light" onclick="addFaculty()" type="submit" name="action">Submit
+ <a class="btn waves-effect waves-light" onclick="addFaculty()" href='addFaculty.php'type="submit" name="action">Submit
         <!-- <i class="material-icons right">send</i> -->
-      </button>
+      </a>
 </div>
 <!--  Add viewing here-->
 <!--end of view  -->

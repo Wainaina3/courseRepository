@@ -58,6 +58,30 @@
       $('#upDept').openModal();          
     }
 
+      function delrow(){
+      $("#stage tr").click(function() {
+        //change the background color to red before removing
+        $(this).css("background-color","#FF3700");
+
+        $(this).fadeOut(400, function(){
+          $(this).remove();
+        });
+      });
+    }
+
+     function deletedept(bid){
+    $.get( 
+     "phpController/departmentControl.php", {cmd:3, depid:bid},
+     function(data) {
+      if(data['result']!=1){
+        alert(data['message']);                          
+      }else{
+        Materialize.toast(data['message'], 4000);     
+      }
+
+    },"json");
+  }
+
 
 
 </script>
