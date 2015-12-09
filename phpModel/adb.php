@@ -12,7 +12,7 @@
 // define("DB_PWORD","db!o^_r46");
 
 define("DB_HOST", 'localhost');
-define("DB_NAME", 'courserepo');
+define("DB_NAME", 'courseoutline');
 define("DB_PORT", 3306);
 define("DB_USER","root");
 define("DB_PWORD","");

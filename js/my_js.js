@@ -68,6 +68,50 @@
 		}
 	}
 
+	//controls the button with id addDept.
+// this button helps to add the department records
+// $(function(){
+//  $('#addD').click(function(e){
+//  	alert("hey")
+//  	addDept();
+//  });
+// });
+
+function addDept(){
+	var deptId=$('#departmentid').val();
+	var deptName=$('#departmentname').val();
+	var hodId=$('#hod').val();
+	//validating input
+	if(deptId==""){
+		alert("Need to Enter the Department's ID");
+		return;
+	}
+	else if(deptName==""){
+		alert("Need to Enter the Department's Name");
+		return;
+	}
+	else if(hodId==""){
+		alert("Need to Enter the HOD's ID");
+		return;
+	}
+	//if every detail is provided
+	else{
+		var obj=sendRequest(".\\phpController\\departmentControl.php?cmd=1&deptId="+deptId+"&deptName="+deptName+"&hodId="+hodId);
+		if(obj.result==1){
+			document.getElementById('dsr').innerHTML=obj.message;
+			alert(obj.message);
+			document.getElementById("departmentid").value="";
+			document.getElementById("departmentname").value="";
+			document.getElementById("hod").value="";
+			return;
+		}
+		else{
+			document.getElementById('dsr').innerHTML=obj.message;
+			return;
+		}
+	}
+}
+
 	//function to display popup
 	function div_show(){
 		document.getElementById('abc').style.display = "block";
