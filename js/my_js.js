@@ -1,5 +1,3 @@
-
-
 	function sendRequest(u){
 		// Send request to server
 		//u a url as a string
@@ -45,57 +43,6 @@
 	}
 
 	
-	
-
-	// function courseOutlines(){
-
-	// 	var results=sendRequest("manipulation.php?cmd=2");
-	// 	var tbl= document.getElementById("course_outlines");
-
-	// 	if(results.result!=0){		
-
-
-	// 		for(i=0;i<results.outlines.length;i++){
-	// 			if(results.outlines[i].course_dept=='cs'){
-	// 				cs=document.getElementById("csTable");
-	// 				csrow=cs.rows.length;
-	// 				row=cs.insertRow(csrow);
-	// 				cid=row.insertCell(0);
-	// 				cname=row.insertCell(1);
-	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";;
-	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
-
-	// 			}
-	// 			else if(results.outlines[i].course_dept=='as'){
-	// 				as=document.getElementById("asTable");
-	// 				asrow=as.rows.length;
-	// 				row=as.insertRow(asrow);
-	// 				cid=row.insertCell(0);
-	// 				cname=row.insertCell(1);
-	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
-	// 			}
-	// 			else if(results.outlines[i].course_dept=='ba'){
-	// 				ba=document.getElementById("baTable");
-	// 				barow=ba.rows.length;
-	// 				row=ba.insertRow(barow);
-	// 				cid=row.insertCell(0);
-	// 				cname=row.insertCell(1);
-	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>";
-
-	// 			}
-	// 			else if(results.outlines[i].course_dept='eng'){
-	// 				eng=document.getElementById("engTable");
-	// 				engrow=eng.rows.length;
-	// 				row=eng.insertRow(engrow);
-	// 				cid=row.insertCell(0);
-	// 				cname=row.insertCell(1);
-	// 				cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_id +"</a>";
-	// 				cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].course_id +"'>"+results.outlines[i].course_name +"</a>"; 
-	// 			}
-	// 		}
-	// 	}
 	// }
 	//validating empty fields
 	function check_empty () {
@@ -353,8 +300,8 @@ function get_deptByName(){
 * The requests returns a success or failure message in json format.
 * Json object contains result (int) and message (string) properties
  */
-	function deleteCourse(courseId)
-	{
+ function deleteCourse(courseId) {
+	
 		var request="http://localhost:8000/server/courseRepository/phpController/courseOutlineControl.php?cmd=5&courseId="+courseId;
 		var result =sendRequest(request);
 
@@ -393,9 +340,7 @@ function get_deptByName(){
 	/*
 	* This function will get add faculty form from the web page and send it to the controller for processing
 	 */
-
-	function addFaculty(){
-		alert("called");
+function addFaculty(){
 
 		var formElement = document.getElementById("addFaculty");
 		var fd = new FormData(formElement);
@@ -404,13 +349,20 @@ function get_deptByName(){
 			url: "phpController/facultyControl.php?cmd=1",
 			type: "POST",
 			data: fd,
-			//dataType: 'json',
+			dataType: 'json',
 			contentType: false,
 			processData:false,
 			success: function(data)
 			{
-
-				alert(data + " " + "Message from request");
+			//alert(data);
+			if(data.results==1){
+				
+				$("#facultyLastName").empty();
+				$("#facultyFirstName").empty();
+				$("#facultyUsername").empty();
+				$("#facultyId").empty();
+				$("#departmentId").empty();
+			}
 			},
 			error: function(data){
 

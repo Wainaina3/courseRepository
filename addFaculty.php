@@ -1,168 +1,214 @@
 
+<!DOCTYPE html>
+<html>
 
-  function sendRequest(u){
-    // Send request to server
-    //u a url as a string
-    //async is type of request
-    var obj=$.ajax({url:u,async:false});
-    //Convert the JSON string to object
-    var result=$.parseJSON(obj.responseText);
-    //  alert("request sent");
-    return result;  //return object
+<head>
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/style.css"/>
 
-  }
-  //activate select element in materialize
-  // $(document).ready(function() {
-  //  $('select').material_select();
-  // });
-
-  function courseOutlines(){
-
-    var results=sendRequest("courseOutlineControl.php?cmd=7");
-    var tbl= document.getElementById("course_outlines");
-
-    if(results.result!=0){    
-
-      for(i=0;i<results.outlines.length;i++){
-        
-
-        tblrows=tbl.rows.length;
-        row=tbl.insertRow(tblrows);
-      
-        if(i%2==0){
-          row.style="background-color:#EEEEEE";
-        }
-        cid=row.insertCell(0);
-        cname=row.insertCell(1);
-        cdept=row.insertCell(2);
-        cid.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].courseId +"'>"+results.outlines[i].courseId +"</a>";;
-        cname.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].courseId +"'>"+results.outlines[i].courseTitle +"</a>";
-        cdept.innerHTML="<a href='viewCourses.php?id="+results.outlines[i].courseId +"'>"+results.outlines[i].courseDepartment +"</a>";
-
-
-      }
-    }
-  }
-
-  function displayCourse(){
-    
-    var c_id=document.getElementById("space").value;
-    alert(c_id);
-    var conRow=sendRequest("phpController/courseOutlineControl.php?cmd=1&courseId="+c_id);
-    var table=sendRequest("phpController/courseOutlineControl.php?cmd=4&courseId="+c_id);
-    if(conRow.result==1){
-      var courseCon=conRow.Outline;
-      var taCon=table.schedule;
-      var conHTML="";
-      for(var i=0;i<courseCon.length;i++){
-        conHTML+='<b>Course ID</b>:<input type="text" length="30" name="cid" id="cid" value='+courseCon[i]['courseId']+' readonly><br><b>Course Title</b>:<input type="text" length="30" name="cid" id="cid" value='+courseCon[i]['courseTitle']+'><br><b>Course Department</b>:<input type="text" length="30" name="cid" id="cid" value='+courseCon[i]['courseDepartment']+'><b>Course Objective</b><br><textArea>'+courseCon[i]['courseObjectives']+'</textArea><div><b>Course Description</b></div><br><textArea>'+courseCon[i]['courseDescription']+'</textArea><br><b>Course Learning Goals</b>:<textArea>'+courseCon[i]['learninggoals']+'</textArea><br><b>Course Semester</b>:<input type="text" length="30" name="cid" id="cid" value='+courseCon[i]['courseSemester']+'><br>';
-        conHTML+='<div class="headers" id="scheduler" name="scheduler"> <b>COURSE SCHEDULER</b><table id="schedule" name="schedule" border="1" width="50%"" align="center"><div id="schedule_header" name="schedule_header"> <thead id="table_headers" name="table_headers" width="50%"><th><b>Weeks</b></th><th><b>Topics</b></th><th><b>Readings</b></th><th><b>Milestones</b></th></thead></div><tbody id="thetab">';
-        for(var j=0;j<taCon.length;j++){
-          conHTML+='<tr  align="center" contenteditable="true"><td>'+taCon[j]['weeks']+'</td><td>'+taCon[j]['topics']+'</td><td>'+taCon[j]['readings']+'</td><td>'+taCon[j]['milestones']+'</td></tr></tbody></table></div><br>';
-        }
-      }
-      document.getElementById('contentShow').innerHTML=conHTML;
-      return;
-    }
-    alert(conRow.message);
-    return;
-  }
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
+  <script type="text/javascript">
+  //   function check(){
+  //     var dob = "<?php //echo $_SESSION['jwi_user_dob']; ?>";
+  //     var des = "<?php //echo $_SESSION['jwi_user_description']; ?>";
+  //     var con = "<?php //echo $_SESSION['jwi_user_contact']; ?>";
+  //     var cv = "<?php //echo $_SESSION['jwi_user_cv']; ?>";
+  //     if(dob=="0000-00-00"||des=="null"||con=="null"||cv=="null"){
+  //      Materialize.toast("Please try to complete your profile details.", 4000);  
+  //    }
+  //  }
+  //  function logout(){
+  //    $.get("user_con.php",{act:2},
+  //     function(data){
+  //      if(data){
+  //       window.location="index.php"; 
+  //     }
+  //   });
+  //  }
+
+  //  function php() {
+  //   var image = "<?php //echo $_SESSION['jwi_user_propic']; ?>";
+  //   if(image=="null"){
+  //     image = "images/default-user.png";
+  //   }
+  //   document.getElementById('pic').setAttribute('src',image);
+  //   document.getElementById('pics').setAttribute('src',image);
+  // }
+</script>
+
+</head>
+
+<body class="#bbdefb blue lighten-4">
+ <div class="container z-depth-5"  id="indexcon">
+   <div class="navbar-fixed" >
+     <ul id="user" class="dropdown-content ">
+      <li><a href="#" class="blue-text">My Profile</a></li>
+      <li class="divider"></li>
+      <li><a href="#" class="blue-text">Activities</a></li>
+      <li class="divider"></li>
+      <li><a href="#!" onclick="" class="blue-text">Logout</a></li>
+    </ul>
+    <ul id="courseout" class="dropdown-content">
+      <li><a href="#" class="blue-text">Add</a></li>
+      <li class="divider"></li>
+      <li><a href="courseview.php" class="blue-text">View</a></li>
+    </ul>
+    <ul id="department" class="dropdown-content ">
+      <li><a href="#" class="blue-text">Add</a></li>
+      <li class="divider"></li>
+      <li><a href="#" class="blue-text">View</a></li>
+    </ul>
+     <ul id="faculty" class="dropdown-content ">
+      <li><a href="#" class="blue-text waves-effect waves-light modal-trigger">Add</a></li>
+      <li class="divider"></li>
+      <li><a href="facultyview.php" class="blue-text">View</a></li>
+    </ul>
+    <nav>
+      <div class="nav-wrapper" >
+        <a href="#!" class="brand-logo"><img src="images/25.png" width="80px" height="50px"></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="mdi-navigation-menu"></i></a>
+        <ul class="right hide-on-med-and-down" >
+          <li><a href="home.php" class="blue-text">Home</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="courseout">Courseoutline</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="department">Department</a></li>
+          <li><a href="#!" class="blue-text dropdown-button" data-beloworigin="true" data-activates="faculty">Faculty</a></li>
+          <li><a href="#!" class="valign-wrapper dropdown-button" data-beloworigin="true" data-activates="user">
+            <div class="row user" >
+             <div class="col s5 truncate" style="padding:0;">
+              <span class="blue-text" style="float:right; padding-left:25%; " >
+               <?php //echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+              </span>
+            </div>
+            <div class="col s1">&nbsp;</div>
+            <div class="col s5 ">
+              <img id="pic" alt="" class="circle valign" style="width:75px;height:65px; float:left;">
+            </div>
+
+          </div>
+
+        </a>
+      </li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a href="home.php" class="blue-text">Home</a></li>
+      <li><a href="job_ads.php" class="blue-text">Ads Portal</a></li>
+      <li><a href="events.php" class="blue-text">Events</a></li>
+      <li><a href="profile.php" class="valign-wrapper">
+        <div class="row user" >
+         <div class="col s7 m7" id="uname">
+          <span class="blue-text " style="float:left; font-size:80%; ">
+           <?php// echo $_SESSION['jwi_user_firstname']." ".$_SESSION['jwi_user_lastname']; ?>
+         </span>
+       </div>
+       <div class="col s5 m5" >
+        <img id="pics" src="" alt="" class="circle responsive-img valign" style="width:100px;height:65px; float:right; ">
+      </div>
+
+    </div>
+
+  </a>
+</li>
+<li class="divider"></li>
+<li><a href="" class="blue-text">My Profile</a></li>
+<li class="divider"></li>
+<li><a href="" class="blue-text">Activities</a></li>
+<li class="divider"></li>
+<li><a href="" class="blue-text" onclick="">Logout</a></li>
+</ul>
+</div>
+</nav>
+</div>
+
+<div id="userform" class="col s12 m12">
+<h4> Add Faculty Member</h4>
+  <div class="input-field">  
+    <form id="addFaculty" method="POST" enctype="multipart/form-data">
+      <div class="input-field">
+          <label for="facultyId">Faculty ID:</label>
+          <input type="text" id="facultyId" name="facultyId">
+      </div>
+      <div class="input-field">
+          <label for="facultyUsername">Faculty Username:</label>
+          <input type="text" id="facultyUsername" name="facultyUsername">
+      </div>
+      <div class="input-field">
+        <label for="facultyFirstName"> First Name:</label>
+        <input type="text" id="facultyFirstName" name="facultyFirstName">
+      </div>
+      <div class="input-field">
+        <label for="facultyLastName"> Last Name:</label>
+        <input type="text" id="facultyLastName" name="facultyLastName">
+      </div>
+         <div class="input-field col s12">
+            <select id="departmentId" name="departmentId">
+            <option value="" selected>Choose Department</option>
+            <option value="CS"> CS</option>
+            <option value="BA"> BA</option>
+            <option value="Eng">Eng</option>
+            <option value="Arts">Arts</option>
+
+            </select>
+            <label> DepartmentID</label>
+        </div>
+
+    </form>
+  </div>
+ <button class="btn waves-effect waves-light" onclick="addFaculty()" type="submit" name="action">Submit
+        <!-- <i class="material-icons right">send</i> -->
+      </button>
+</div>
+<!--  Add viewing here-->
+<!--end of view  -->
+<footer class="page-footer blue lighten-4">
+    <div class="row">
+      <div class="col l6 s12" style=" float:left;">
+        <h5 class="black-text">Contact Us</h5>
+        <p class="black-text text-lighten-4">Softeware Engineering<br>
+          Ashesi University<br>
+          Berekusu<br>
+        </p>
+        <p class="black-text text-lighten-4">Mobile:  +233-23 232 2323</p>
+        <p class="black-text text-lighten-4">Email:   couserepo@gmail.com</p>
+
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="black-text">Quick Links</h5>
+        <ul>
+          <li><a class="black-text text-lighten-3" href="#!">Facebook</a></li>
+          <li><a class="black-text text-lighten-3" href="#!">Twitter</a></li>
+          <li><a class="black-text text-lighten-3" href="#!">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+  
+  <div class="footer-copyright" >
+    <div class="black-text center-align"  >
+      © 2015 Group 9 - All Rights Reserved 
+      <!-- <a class="black-text text-lighten-4 right" href="#!">More Links</a> -->
+    </div>
+    </div>
+</footer>
+</div>
 
 
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/materialize.js"></script>
+<script type="text/javascript" src='js/my_js.js'></script>
+ <script type="text/javascript">
+  $( document ).ready(function(){
+    $(".button-collapse").sideNav();
+    var orginalWidth = $(window).height();
+    $('.slider').slider({full_width: true, height: (orginalWidth/2)});
 
-
-
-
-
-/*
-*This function sends a request to delete a course outline via ajax call
-* The requests returns a success or failure message in json format.
-* Json object contains result (int) and message (string) properties
- */
-  function deleteCourse(courseId)
-  {
-    var request="http://localhost:8000/server/courseRepository/phpController/courseOutlineControl.php?cmd=5&courseId="+courseId;
-    var result =sendRequest(request);
-
-  }
-
-  /*
-  *This function sends an ajax request to upload a file to server
-  * The file information are also uploaded to the database
-  * The processing of this upload is done by the uploadControl.php file
-  *
-   */
-  function uploadFile(){
-    var formElement = document.getElementById("fileUpload");
-    var fd = new FormData(formElement);
-
-    $.ajax({
-      url: "phpController/uploadControl.php?cmd=1",
-      type: "POST",
-      data: fd,
-      //dataType: 'json',
-      contentType: false,
-      processData:false,
-      success: function(data)
-      {
-
-        alert(data + " " + "Message from request");
-      },
-      error: function(data){
-
-
-      }
-    });
-  }
-
-  /*
-  * This function will get add faculty form from the web page and send it to the controller for processing
-   */
-
-  function addFaculty(){
-
-
-    var formElement = document.getElementById("addFaculty");
-    var fd = new FormData(formElement);
-
-    $.ajax({
-      url: "phpController/facultyControl.php?cmd=1",
-      type: "POST",
-      data: fd,
-      //dataType: 'json',
-      contentType: false,
-      processData:false,
-      success: function(data)
-      {
-
-        alert(data + " " + "Message from request");
-      },
-      error: function(data){
-
-
-      }
-    });
-  }
-function sendOutline(){
-  alert("called");
-  var form=document.getElementById("courseOutline");
-  var formData = new FormData(form);
-
-  $.ajax({
-    url: "phpController/courseOutlineControl.php?cmd=1",
-    type: "POST",
-    data: formData,
-    dataType: "json",
-    contentType: false,
-    processData: false,
-    success: function(data){
-      alert("data from server" + data.results + data.message + data.received);
-    },
-    error: function(data){
-      alert("error");
-    }
+    $('.modal-trigger').leanModal();
+   $('select').material_select();
   });
-}
+  
+</script>
+</body>
 
-
+</html>
