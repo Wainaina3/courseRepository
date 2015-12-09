@@ -96,10 +96,9 @@ function addDept(){
 	}
 	//if every detail is provided
 	else{
-		var obj=sendRequest(".\\phpController\\departmentControl.php?cmd=1&deptId="+deptId+"&deptName="+deptName+"&hodId="+hodId);
+		var obj=sendRequest("phpController/departmentControl.php?cmd=1&deptId="+deptId+"&deptName="+deptName+"&hodId="+hodId);
 		if(obj.result==1){
 			document.getElementById('dsr').innerHTML=obj.message;
-			alert(obj.message);
 			document.getElementById("departmentid").value="";
 			document.getElementById("departmentname").value="";
 			document.getElementById("hod").value="";

@@ -40,17 +40,18 @@ class department extends adb
 	*/
 	public function addDepartment($deptId,$deptName,$hodId){
 		//querying the result from the database
-		$result=$this->query("insert into department set 
-							  departmentId='$deptId', 
-							  departmentName='$deptName',
-							  departmentHOD='$hodId'");
+		$sql="insert into department set departmentId='$deptId',departmentName='$deptName', departmentHOD='$hodId'";
+
+		return $this->query($sql);
 		//checking if query failed
-		if($result){
-			return false;
-		}
-		else{
-			return true;
-		}
+
 	} //End of the addDepartment function
+
+	function deleteDepartmentModel($delptid)
+	{
+	$sql="delete from department where departmentId='$delptid'";
+
+		return $this->query($sql);
+	}
 
 }

@@ -56,7 +56,7 @@
       <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
-      <li><a href="addDepartment.php" class="blue-text">Add</a></li>
+      <li><a onclick="$('#addDept').openModal()" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="departmentview.php" class="blue-text">View</a></li>
     </ul>
@@ -157,13 +157,6 @@
 
 
 <div class="row" id="userform">
- <!--  <div id="myOutline">
-    <form id="courseOutline" method="POST" enctype="multipart/form-data">
-      <label for="courseTitle"> Course Title</label>
-      <input id="courseTitle" type="text">
-      <input type="button" value="submit" onclick="sendOutline()" >
-    </form>
-  </div> -->
   
   <div id="divContent" class="courseOutline col s12 m12 l12">
 
@@ -271,22 +264,31 @@
 </div>
 </div>
 
-<!-- <div id="deleteTest">
-  <button id="deleteButton" onclick="deleteCourse('12')">Delete</button>
-</div>
-
-</div> -->
 <!--  Add viewing here-->
-<!-- <table id="course_outlines" name="course_outlines" border="1px" >
 
-  <tr class="theaders" id="theaders" name="theaders" style="background-color:black;color:white;"> 
-    <td> <b>Course ID<b> </td>
-    <td><b> Course Name<b></td>
-    <td> <b>Course Department<b></td>
-    
-  </tr>
 
-</table> -->
+<div id="addDept" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Add Department</h4>
+      <p><span id="dsr"></span></p>
+    <div class="input-field col s12">
+      <input length="30" name="departmentid" id="departmentid" type="text" class="validate">
+      <label for="departmentid" >Department ID </label>
+    </div>
+    <div class="input-field col s12">
+      <input length="30" name="departmentname" id="departmentname" type="text" class="validate">
+      <label for="departmentname" id="departmentname">Department Name</label>
+    </div>
+    <div class="input-field col s12">
+      <input length="30" name="hod" id="hod" type="text" class="validate">
+      <label for="hod" id="hod">Head of Department Id</label>
+      </div>
+  </div>
+   <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Back</a>
+      <a href="#!" onclick="addDept()" class="modal-action modal-close waves-effect waves-green btn-flat ">Save</a>
+    </div>  
+</div>
 <!--end of view  -->
 <footer class="page-footer blue lighten-4">
   <div class="row">

@@ -12,7 +12,7 @@
 // define("DB_PWORD","db!o^_r46");
 
 define("DB_HOST", 'localhost');
-define("DB_NAME", 'courseoutline');
+define("DB_NAME", 'courserepo');
 define("DB_PORT", 3306);
 define("DB_USER","root");
 define("DB_PWORD","");
@@ -132,6 +132,7 @@ class adb
         $this->result = mysqli_query($this->link,$str_sql);
         if (!$this->result) {
             $this->log_error(LOG_LEVEL_DB_FAIL, 4, "query failed", mysqli_error($this->link));
+           // echo mysqli_error($this->link);
             return false;
         }
         return true;

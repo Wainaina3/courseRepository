@@ -71,6 +71,7 @@
     }
 
      function deletedept(bid){
+      alert(bid);
     $.get( 
      "phpController/departmentControl.php", {cmd:3, depid:bid},
      function(data) {
@@ -157,6 +158,8 @@ function test(){
       <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
+      <li><a onclick="$('#addDept').openModal()" class="blue-text">Add</a></li>
+      <li class="divider"></li>
       <li><a href="departmentview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="faculty" class="dropdown-content ">
@@ -223,8 +226,9 @@ function test(){
 <div class="row" id="userform">
   <div class="col l4">&nbsp;</div>
   <div class="col s8 m6 l4" align="center"><h4>List of Departments</h4></div>
-  <div class="col s4 m6 l4" align="right"> <button class="btn waves-effect waves-light" onclick="$('#addDept').openModal()" name="action">Add</button></div>
-  <table class="bordered centered highlight">
+<!--   <div class="col s4 m6 l4" align="right"> <button class="btn waves-effect waves-light" onclick="$('#addDept').openModal()" name="action">Add</button></div>
+ -->  
+ <table class="bordered centered highlight">
     <thead>
       <tr>
         <th data-field="id">Department Id</th>
@@ -265,12 +269,12 @@ function test(){
     </div>
     <div class="input-field col s12">
       <input length="30" name="hod" id="hod" type="text" class="validate">
-      <label for="hod" id="hod">Head of Department</label>
+      <label for="hod" id="hod">Head of Department Id</label>
       </div>
   </div>
    <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Back</a>
-      <a href="#!" onclick="addDept()" class="modal-action waves-effect waves-green btn-flat ">Save</a>
+      <a href="#!" onclick="addDept()" class="modal-action modal-close waves-effect waves-green btn-flat ">Save</a>
     </div>  
 </div>
 
@@ -339,7 +343,7 @@ function test(){
   $( document ).ready(function(){
 
    getDepartmentData();
-   viewDepartment();
+   //viewDepartment();
 
    // getCourseData();
    $('.modal-trigger').leanModal();

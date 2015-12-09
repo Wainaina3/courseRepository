@@ -70,6 +70,7 @@ class departmentControl extends department
 			//unsuccessful query result
 			if(!$result){
 				//json message when unsuccessful
+
 				echo '{"result":0,"message":"Failed to Add Department"}';
 				return;
 			}
@@ -88,6 +89,18 @@ class departmentControl extends department
 		}
     } //End of addDepartmentCon function
 
+    function deleteDepartmentControl(){
+        $deptid=$_REQUEST['depid'];
+         $deletion=$this->deleteDepartmentModel($deptid);
+
+        if($deletion){
+            echo '{"result":1,"message":"Department succesfully deleted"}';
+            return;
+        }
+        else{
+            echo '{"result":0,"message":"Could not delete the department"}';
+        }
+    }
 
 
 
@@ -112,6 +125,7 @@ if(isset($_REQUEST['cmd'])) {
             break;
         case 3:
             // Delete
+            $departmentControl->deleteDepartmentControl();
             break;
         case 4:
             $departmentControl->viewDepartmentsControl();

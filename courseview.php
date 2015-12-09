@@ -78,7 +78,7 @@ $('#updat').openModal();
       <li><a href="courseview.php" class="blue-text">View</a></li>
     </ul>
     <ul id="department" class="dropdown-content ">
-      <li><a href="addDepartment.php" class="blue-text">Add</a></li>
+      <li><a onclick="$('#addDept').openModal()" class="blue-text">Add</a></li>
       <li class="divider"></li>
       <li><a href="departmentview.php" class="blue-text">View</a></li>
     </ul>
@@ -171,7 +171,28 @@ $('#updat').openModal();
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
     </div>
   </div>
-
+<div id="addDept" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Add Department</h4>
+      <p><span id="dsr"></span></p>
+    <div class="input-field col s12">
+      <input length="30" name="departmentid" id="departmentid" type="text" class="validate">
+      <label for="departmentid" >Department ID </label>
+    </div>
+    <div class="input-field col s12">
+      <input length="30" name="departmentname" id="departmentname" type="text" class="validate">
+      <label for="departmentname" id="departmentname">Department Name</label>
+    </div>
+    <div class="input-field col s12">
+      <input length="30" name="hod" id="hod" type="text" class="validate">
+      <label for="hod" id="hod">Head of Department Id</label>
+      </div>
+  </div>
+   <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Back</a>
+      <a href="#!" onclick="addDept()" class="modal-action modal-close waves-effect waves-green btn-flat ">Save</a>
+    </div>  
+</div>
   <!-- Modal Structure -->
   <div id="updat" class="modal modal-fixed-footer">
     <div class="modal-content">
