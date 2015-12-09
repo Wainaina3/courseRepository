@@ -85,7 +85,8 @@ class facultyControl extends faculty
     *Viewing all faculty members
     */
     function viewFaculty(){
-        $result=$this->viewFaculty();
+        $result=$this->viewFacultyModel();
+
         if(!$result){
             echo '{"result":0,"message":"Failed to query"}';
             return;
@@ -95,6 +96,7 @@ class facultyControl extends faculty
             echo '{"result":1,"faculty":[';
             while($row){
                 echo json_encode($row);
+                $row=$this->fetch();
                 if($row){
                     echo ",";
                 }

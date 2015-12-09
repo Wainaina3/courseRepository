@@ -12,10 +12,12 @@
   
   <script type="text/javascript">
   function getFacultyData(){
+
     $.get(
      "phpController/facultyControl.php", {cmd: 4},
 
      function(data) {
+     
       for (var i=0; i<data.faculty.length; i++) {
         var row = stage1.insertRow();  
 
@@ -23,7 +25,7 @@
         cell.innerHTML= data.faculty[i]["facultyId"];
 
         var cell = row.insertCell();
-        cell.innerHTML= data.faculty[i]["facultyFirstName"];
+        cell.innerHTML= data.faculty[i]["facultyFirstName"] + " " +data.faculty[i]["facultyLastName"];
 
         var cell = row.insertCell();
         cell.innerHTML="<li style='list-style-type:none;'><a  href='#' onclick='modal("+data.faculty[i]["facultyId"]+")'>Details</a></li>";
@@ -209,6 +211,7 @@
 <script type="text/javascript">
   $( document ).ready(function(){
       getFacultyData();
+
    $('.modal-trigger').leanModal();
    $(".button-collapse").sideNav();
 

@@ -69,7 +69,7 @@ class faculty extends adb
     * @return boolean false if the query fails and otherwise 
     *@return boolean true otherwise
     */
-    function viewFaculty(){
+    function viewFacultyModel(){
     	$sql="select * from faculty";
     	$result=$this->query($sql);
     	if(!$result){
