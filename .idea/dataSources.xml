@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2196965937">
-    <data-source source="LOCAL" name="MySQL - courserepo@localhost" uuid="19895dd4-04a6-44fd-b3be-983acf681016">
+  <component name="DataSourceManagerImpl" format="xml" hash="842552630">
+    <data-source source="LOCAL" name="MySQL - courserepo@localhost" uuid="f21aacee-bca6-4ac1-bc3b-21758d6d7023">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

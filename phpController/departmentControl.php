@@ -18,23 +18,36 @@ class departmentControl extends department
 */
 
     function viewDepartmentsControl(){
-
+        $result="";
         if(!$this->viewDepartmentsModel()){
-            echo '{"result":0, "message":"No available departments"}';
+            $result=$result. '{"result":0, "message":"No available departments"}';
+            echo $result;
             return;
         }
         $row=$this->fetch();
-        echo '{"result":1,"departments":[';
+        //echo '{"result":1,"departments":[';
+        $result=$result.'{"result":1,"departments":[';
         while($row){
-            echo json_encode($row);
+            //echo json_encode($row);
+            $result=$result.json_encode($row);
             $row=$this->fetch();
             if($row){
-                echo ",";
+          //      echo ",";
+              $result=  $result.",";
             }
         }
-        echo "]}";
+        //echo "]}";
+       $result= $result."]}";
+        echo $result;
+        return $result;
     }
 
+    /**
+     *This function gets the courses associated with a particular
+     * department with the given id
+     * It gets the id from the user POST request
+     * @return jsonObject
+     */
     function getDepartmentCoursesControl() {
 
         $deptid=$_REQUEST['dept'];

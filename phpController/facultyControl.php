@@ -74,9 +74,9 @@ class facultyControl extends faculty
     		echo '{"result":0, "message":"No available course outlines"}';
     		return;
     	}
-	// $row=$obj->fetch();
+	     $row=$obj->fetch();
     	echo '{"result":1,"outlines":[';
-    	echo json_encode($obj->getFacultyById($fid));
+    	echo json_encode($row);
     	echo "]}";
 
 }
