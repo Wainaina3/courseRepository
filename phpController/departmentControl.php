@@ -16,7 +16,7 @@ class departmentControl extends department
 		$depid = $_REQUEST['depid'];
 
 		$obj = new department();
-		if(!$obj->deleteDepartment($depid)){
+		if (!$obj->deleteDepartment($depid)) {
 			echo '{"result":0, "message":"No available course outlines"}';
 			return;
 		}
@@ -25,7 +25,7 @@ class departmentControl extends department
 
 	}
 
-
+}
 
 /*
  * Creates an instance of facultyControl class
