@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2015 at 05:52 PM
+-- Generation Time: Dec 18, 2015 at 09:24 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -88,14 +88,57 @@ CREATE TABLE IF NOT EXISTS `deletedcourseoutline` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `deleteddepartments`
+--
+
+CREATE TABLE IF NOT EXISTS `deleteddepartments` (
+  `departmentHOD` varchar(255) NOT NULL,
+  `departmentId` varchar(255) NOT NULL,
+  `departmentName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `deletedfaculties`
+--
+
+CREATE TABLE IF NOT EXISTS `deletedfaculties` (
+  `facultyId` int(11) NOT NULL,
+  `departmentId` varchar(200) NOT NULL,
+  `facultyFirstName` varchar(200) NOT NULL,
+  `facultyLastname` varchar(200) NOT NULL,
+  `facultyUsername` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `department`
 --
 
 CREATE TABLE IF NOT EXISTS `department` (
   `departmentId` varchar(250) NOT NULL,
   `departmentName` varchar(255) NOT NULL,
-  `deparmentHOD` varchar(255) NOT NULL
+  `departmentHOD` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Triggers `department`
+--
+DELIMITER $$
+CREATE TRIGGER `deleteDepartment` BEFORE DELETE ON `department`
+ FOR EACH ROW INSERT IGNORE INTO deleteddepartments (
+  departmentId,
+  departmentName,
+  departmentHOD
+ ) VALUES (
+   OLD.departmentId,
+   OLD.departmentName,
+   OLD.departmentHOD
+ )
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -111,6 +154,35 @@ CREATE TABLE IF NOT EXISTS `faculty` (
   `departmentId` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `faculty`
+--
+
+INSERT INTO `faculty` (`facultyId`, `facultyUsername`, `facultyFirstName`, `facultyLastName`, `departmentId`) VALUES
+(8, 'lkj', 'jkn', 'kjn', 'CS'),
+(344, 'fdfs', 'sdfs', 'sfd', 'CS');
+
+--
+-- Triggers `faculty`
+--
+DELIMITER $$
+CREATE TRIGGER `deleteFacultytrigger` BEFORE DELETE ON `faculty`
+ FOR EACH ROW INSERT IGNORE INTO deletedfaculties (
+  departmentId,
+  facultyId,
+  facultyFirstName,
+  facultyLastName,
+  facultyUsername
+ ) VALUES (
+   OLD.departmentId,
+   OLD.facultyId,
+   OLD.facultyFirstName,
+   OLD.facultyLastname,
+   OLD.facultyUsername
+ )
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +197,17 @@ CREATE TABLE IF NOT EXISTS `pdffiletable` (
   `fileId` varchar(200) NOT NULL,
   `storageLink` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pdffiletable`
+--
+
+INSERT INTO `pdffiletable` (`courseId`, `courseTitle`, `semester`, `facultyId`, `fileId`, `storageLink`) VALUES
+('4343', 'OS', '', 1223, '43432015-11-16.13:42:58', 'C:xampphtdocsservercourseRepositoryphpController..pdfFiles/01.OSHistory-1.pdf'),
+('687', 'CS', '', 1212, '6872015-11-16.13:44:00', 'C:xampphtdocsservercourseRepositoryphpController..pdfFiles/Interview_Questions-_Operating_Systems.pdf'),
+('434', 'rdterd', 'Spring', 545, '4342015-11-16.13:46:52', 'C:xampphtdocsservercourseRepositoryphpController..pdfFiles/intro-linux.pdf'),
+('r343', 'fdss', 'Spring', 432, 'r3432015-11-16.14:05:24', 'C:xampphtdocsservercourseRepositorypdfFiles\01.OSHistory-5.pdf'),
+('3232', 'CSf', 'Fall', 5435, '32322015-11-16.14:22:35', 'C:\\xampp\\htdocs\\server\\courseRepository\\pdfFiles\\intro.pdf');
 
 -- --------------------------------------------------------
 
@@ -182,6 +265,12 @@ ALTER TABLE `courseoutline`
 ALTER TABLE `deletedcourseoutline`
   ADD UNIQUE KEY `courseId` (`courseId`),
   ADD UNIQUE KEY `courseTitle` (`courseTitle`);
+
+--
+-- Indexes for table `faculty`
+--
+ALTER TABLE `faculty`
+  ADD PRIMARY KEY (`facultyId`);
 
 --
 -- Indexes for table `users`
